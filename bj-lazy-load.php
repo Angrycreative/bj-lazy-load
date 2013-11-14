@@ -3,9 +3,10 @@
 Plugin Name: BJ Lazy Load
 Plugin URI: http://wordpress.org/extend/plugins/bj-lazy-load/
 Description: Lazy image loading makes your site load faster and saves bandwidth.
-Version: 0.6.8
+Version: 0.7.0
 Author: Bjørn Johansen
 Author URI: http://twitter.com/bjornjohansen
+Text Domain: bj-lazy-load
 License: GPL2
 
     Copyright 2011–2013  Bjørn Johansen  (email : post@bjornjohansen.no)
@@ -25,22 +26,14 @@ License: GPL2
 
 */
 
-function print_filters_for( $hook = '' ) {
-    global $wp_filter;
-    if( empty( $hook ) || !isset( $wp_filter[$hook] ) )
-        return;
-
-    print '<pre>';
-    print_r( $wp_filter[$hook] );
-    print '</pre>';
-}
-
 require_once( dirname(__FILE__) . '/scb/load.php' );
+require_once( dirname(__FILE__) . '/inc/lang.php' );
+require_once( dirname(__FILE__) . '/inc/class-bjll-skip-post.php' );
 
 if ( ! class_exists( 'BJLL' ) ) {
 	class BJLL {
 
-		const version = '0.6.8';
+		const version = '0.7.0';
 		protected $_placeholder_url;
 		protected $_skip_classes;
 		
@@ -50,6 +43,11 @@ if ( ! class_exists( 'BJLL' ) ) {
 
 			// Disable when viewing printable page from WP-Print
 			if ( intval( get_query_var( 'print' ) ) == 1 || intval( get_query_var( 'printpage' ) ) == 1 ) {
+				return;
+			}
+			
+			// Disable on Opera Mini
+			if ( strpos( $_SERVER['HTTP_USER_AGENT'], 'Opera Mini' ) !== false ) {
 				return;
 			}
 			
@@ -64,6 +62,7 @@ if ( ! class_exists( 'BJLL' ) ) {
 			}
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_filter( 'bj_lazy_load_html', array( __CLASS__, 'filter' ), 10, 1 );
 			
 			$skip_classes = $options->get( 'skip_classes' );
 			if ( strlen( trim( $skip_classes ) ) ) {
@@ -72,7 +71,8 @@ if ( ! class_exists( 'BJLL' ) ) {
 
 			$this->_placeholder_url = $options->get( 'placeholder_url' );
 			if ( ! strlen( $this->_placeholder_url ) ) {
-				$this->_placeholder_url = plugins_url( '/img/placeholder.gif', __FILE__ );
+				//$this->_placeholder_url = plugins_url( '/img/placeholder.gif', __FILE__ );
+				$this->_placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
 			}
 			
 			if ( $options->get( 'filter_content' ) == 'yes' ) {
@@ -120,10 +120,19 @@ if ( ! class_exists( 'BJLL' ) ) {
 				$bjll_options['thumb_base'] = plugins_url( '/thumb.php', __FILE__ ) . '?src=';
 				$bjll_options['load_hidpi'] = $options->get('load_hidpi');
 				$bjll_options['load_responsive'] = $options->get('load_responsive');
+
+				if ( is_multisite() ) {
+					$bjll_options['site_url'] = get_site_url();
+					$bjll_options['network_site_url'] = network_site_url();
+				}
 			}
 
 			if ( $options->get('infinite_scroll') == 'yes' ) {
 				$bjll_options['infinite_scroll'] = $options->get('infinite_scroll');
+			}
+
+			if ( intval( $options->get('threshold') ) != 200 ) {
+				$bjll_options['threshold'] = intval( $options->get('threshold') );
 			}
 			
 
@@ -134,6 +143,13 @@ if ( ! class_exists( 'BJLL' ) ) {
 		}
 		
 		static function filter( $content ) {
+
+			$run_filter = true;
+			$run_filter = apply_filters( 'bj_lazy_load_run_filter', $content );
+
+			if ( ! $run_filter ) {
+				return $content;
+			}
 		
 			$BJLL = BJLL::singleton();
 			
@@ -171,8 +187,8 @@ if ( ! class_exists( 'BJLL' ) ) {
 					$replaceHTML = preg_replace( '/<img(.*?)src=/i', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 					
 					// add the lazy class to the img element
-					if ( preg_match( '/class="/i', $replaceHTML ) ) {
-						$replaceHTML = preg_replace( '/class="(.*?)"/i', 'class="lazy lazy-hidden $1"', $replaceHTML );
+					if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
+						$replaceHTML = preg_replace( '/class=(["\'])(.*?)["\']/i', 'class=$1lazy lazy-hidden $2$1', $replaceHTML );
 					} else {
 						$replaceHTML = preg_replace( '/<img/i', '<img class="lazy lazy-hidden"', $replaceHTML );
 					}
@@ -218,7 +234,7 @@ if ( ! class_exists( 'BJLL' ) ) {
 			return $content;
 		}
 		
-		protected function _get_options() {
+		protected static function _get_options() {
 			return new scbOptions( 'bj_lazy_load_options', __FILE__, array(
 				'filter_content'          => 'yes',
 				'filter_post_thumbnails'  => 'yes',
@@ -232,11 +248,12 @@ if ( ! class_exists( 'BJLL' ) ) {
 				'load_responsive'         => 'no',
 				'disable_on_wptouch'      => 'yes',
 				'disable_on_mobilepress'  => 'yes',
-				'infinite_scroll'         => 'no'
+				'infinite_scroll'         => 'no',
+				'threshold'               => '200'
 			) );
 		}
 		
-		function options_init() {
+		static function options_init() {
 		
 			$options = self::_get_options();
 

@@ -1,0 +1,161 @@
+# Copyright (C) 2013 BJ Lazy Load
+# This file is distributed under the same license as the BJ Lazy Load package.
+msgid ""
+msgstr ""
+"Project-Id-Version: BJ Lazy Load 0.7.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/bj-lazy-load\n"
+"POT-Creation-Date: 2013-11-13 22:26:06+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin.php:8
+msgid "BJ Lazy Load Options"
+msgstr ""
+
+#: admin.php:17
+msgid "Apply to content"
+msgstr ""
+
+#: admin.php:20 admin.php:26 admin.php:32 admin.php:38 admin.php:44
+#: admin.php:76 admin.php:84 admin.php:92 admin.php:102 admin.php:112
+msgid "Yes"
+msgstr ""
+
+#: admin.php:20 admin.php:26 admin.php:32 admin.php:38 admin.php:44
+#: admin.php:76 admin.php:84 admin.php:92 admin.php:102 admin.php:112
+msgid "No"
+msgstr ""
+
+#: admin.php:23
+msgid "Apply to post thumbnails"
+msgstr ""
+
+#: admin.php:29
+msgid "Apply to gravatars"
+msgstr ""
+
+#: admin.php:35
+msgid "Lazy load images"
+msgstr ""
+
+#: admin.php:41
+msgid "Lazy load iframes"
+msgstr ""
+
+#: admin.php:47
+msgid "Theme loader function"
+msgstr ""
+
+#: admin.php:53
+msgid "Placeholder Image URL"
+msgstr ""
+
+#: admin.php:56
+msgid "Leave blank for default"
+msgstr ""
+
+#: admin.php:59
+msgid "Skip images with classes"
+msgstr ""
+
+#: admin.php:62
+msgid "Comma separated. Example: \"no-lazy, lazy-ignore, image-235\""
+msgstr ""
+
+#: admin.php:65
+msgid "Threshold"
+msgstr ""
+
+#: admin.php:68
+msgid ""
+"How close to the viewport the element should be when we load it. In pixels. "
+"Example: 200"
+msgstr ""
+
+#: admin.php:73
+msgid "Infinite scroll"
+msgstr ""
+
+#: admin.php:77
+msgid "Enable if your theme uses infinite scroll."
+msgstr ""
+
+#: admin.php:81
+msgid "Load hiDPI (retina) images"
+msgstr ""
+
+#: admin.php:85
+msgid ""
+"Will load hiDPI version of the images if the current browser/screen supports "
+"them. (Experimental feature. Do NOT enable if you are using a CDN)"
+msgstr ""
+
+#: admin.php:89
+msgid "Load responsive images"
+msgstr ""
+
+#: admin.php:93
+msgid ""
+"Will load scaled down version of the images if the image is scaled down in "
+"the theme. (Experimental feature. Do NOT enable if you are using a CDN)"
+msgstr ""
+
+#: admin.php:99
+msgid "Disable on WPTouch"
+msgstr ""
+
+#: admin.php:103
+msgid "Disables BJ Lazy Load when the WPTouch mobile theme is used"
+msgstr ""
+
+#: admin.php:109
+msgid "Disable on MobilePress"
+msgstr ""
+
+#: admin.php:113
+msgid "Disables BJ Lazy Load when the MobilePress mobile theme is used"
+msgstr ""
+
+#: inc/class-bjll-skip-post.php:37
+msgid "Lazy Loading"
+msgstr ""
+
+#: inc/class-bjll-skip-post.php:50
+msgid "Skip lazy loading for this page"
+msgstr ""
+
+#: inc/class-bjll-skip-post.php:50
+msgid "Skip lazy loading for this post"
+msgstr ""
+
+#: scb/AdminPage.php:227
+msgid "Settings <strong>saved</strong>."
+msgstr ""
+
+#: scb/AdminPage.php:466
+msgid "Settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "BJ Lazy Load"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/bj-lazy-load/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Lazy image loading makes your site load faster and saves bandwidth."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Bjørn Johansen"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://twitter.com/bjornjohansen"
+msgstr ""

@@ -5,10 +5,10 @@
 
   General Usage:
 
-  *	Place the library anywhere in your JavaScript code before you
+  * Place the library anywhere in your JavaScript code before you
     intend to call the function.
 
-  * 	To initialize Sonar with a different default distance, modify
+  *   To initialize Sonar with a different default distance, modify
     the sonar = Sonar() line immediately following the Sonar
     library definition. Example:
 
@@ -21,19 +21,19 @@
 
   sonar.detect() Usage
 
-  *	Use sonar.detect(elem, distance) to check if the
+  * Use sonar.detect(elem, distance) to check if the
     elem is within screen boundaries.
 
     @elem - The elem you want to detect visibility.
     @distance - The distance from the screen edge that should
     count in the check. Uses default distance if not specified.
 
-  *	Note: sonar.detect() adds a property to
+  * Note: sonar.detect() adds a property to
     ojbects called sonarElemTop. Test to ensure there
     aren't any conflicts with your code. If there
     are, rename sonarElemTop to something else in the code.
 
-  *	sonar.detect() returns:
+  * sonar.detect() returns:
     true if the elem is within the screen boundaries
     false if th elem is out of the screen boundaries
 
@@ -53,10 +53,10 @@
 
   sonar.add() Usage
 
-  *	This method stores elems that are then polled
+  * This method stores elems that are then polled
     on user scroll by the Sonar.detect() method.
 
-  *	Polling initializes once the sonar.add() method is passed
+  * Polling initializes once the sonar.add() method is passed
     an elem with the following properties:
 
     obj : A reference to the elem to observe until it is within
@@ -65,7 +65,7 @@
     id : An alternative to the obj parameter, an "id" can be used
          to grab the elem to observe.
 
-    call: 	The function to call when the elem is within the
+    call:   The function to call when the elem is within the
           specified distance (px). The @elem argument will
         include the elem that triggered the callback.
 
@@ -102,7 +102,7 @@
 
   Notes:
 
-  *	Setting the body or html of your page to 100% will cause sonar to have
+  * Setting the body or html of your page to 100% will cause sonar to have
     an invalid height calculation in Firefox. It is recommended that you
     do not set this CSS property.
 
@@ -112,13 +112,13 @@
       height:100%;  // Do not do this.
     }
 
-  *	If you want to set the default distance to something other
+  * If you want to set the default distance to something other
     than 0, either update the property directly in the code or
     you can do this:
 
     sonar.blip.d = 100;  // Where 100 = 100 pixels above and below the screen edge.
 
-  *	Sleep well at night knowing Sonar automatically cleans up the
+  * Sleep well at night knowing Sonar automatically cleans up the
     event listeners on the scroll event once all calls have executed.
 
   Code History:
@@ -277,14 +277,14 @@ var body = doc.body,
           // If the elem is not detected (offscreen) or detected (onscreen)
           // remove the elem from the queue and fire the callback.
           if ( screenEvent === offScreenEvent ? !detected : detected ) {
-//							// console.log(screenEvent);
+//              // console.log(screenEvent);
             if (!options.tr) {
 
               if ( elem[ '_' + screenEvent ] ) {
                 // console.log("triggered:" + elem.id);
                 // Trigger the onscreen or offscreen event depending
                 // on the desired event.
-                $(elem).trigger( screenEvent );
+                $(elem).triggerHandler( screenEvent );
 
                 options.tr = 1;
 
@@ -335,7 +335,7 @@ var body = doc.body,
       // Trigger the onscreen event at the next possible cycle.
       // Artz: Ask the jQuery team why I needed to do this.
       setTimeout(function(){
-        $(elem).trigger( screenEvent === offScreenEvent ? offScreenEvent : onScreenEvent );
+        $(elem).triggerHandler( screenEvent === offScreenEvent ? offScreenEvent : onScreenEvent );
       }, 0);
       triggered = 1;
     // Otherwise, add it to the polling queue.

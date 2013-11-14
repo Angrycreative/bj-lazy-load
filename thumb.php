@@ -13,6 +13,7 @@ Matt Mullenweg, creator of WordPress, on the whole issue: http://ma.tt/2011/08/t
 
 */
 
+define( 'FILE_CACHE_DIRECTORY', dirname( __FILE__ ) . '/../cache' );
 define( 'FILE_CACHE_MAX_FILE_AGE', 2592000 );
 define( 'FILE_CACHE_SUFFIX', '.img' );
 define( 'FILE_CACHE_PREFIX', 'thumb' );
@@ -21,4 +22,4 @@ define( 'BROWSER_CACHE_MAX_AGE', 31536000 );
 define( 'MAX_WIDTH', 3000 );
 define( 'MAX_HEIGHT', 3000 );
 
-require( 'timthumb.php' );
+require( dirname( __FILE__ ) . '/inc/timthumb.php' );

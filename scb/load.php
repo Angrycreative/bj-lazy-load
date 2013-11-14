@@ -1,8 +1,8 @@
 <?php
 
-$GLOBALS['_scb_data'] = array( 53, __FILE__, array(
+$GLOBALS['_scb_data'] = array( 58, __FILE__, array(
 	'scbUtil', 'scbOptions', 'scbForms', 'scbTable',
-	'scbWidget', 'scbAdminPage', 'scbBoxesPage',
+	'scbWidget', 'scbAdminPage', 'scbBoxesPage', 'scbPostMetabox',
 	'scbCron', 'scbHooks',
 ) );
 
@@ -32,8 +32,10 @@ class scbLoad4 {
 			add_action( 'activate_plugin',  array( __CLASS__, 'delayed_activation' ) );
 		}
 
-		// TODO: don't load when activating a plugin ?
-		add_action( 'plugins_loaded', array( __CLASS__, 'load' ), 9, 0 );
+		if ( did_action( 'plugins_loaded' ) )
+			self::load();
+		else
+			add_action( 'plugins_loaded', array( __CLASS__, 'load' ), 9, 0 );
 	}
 
 	static function delayed_activation( $plugin ) {

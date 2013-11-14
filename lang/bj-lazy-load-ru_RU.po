@@ -1,0 +1,175 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"Project-Id-Version: BJ Lazy Load\n"
+"Language: RUSSIAN\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Elvis TEAM <elviswebteam@gmail.com>\n"
+"Language-Team: Elvis WT <elviswebteam@gmail.com>\n"
+
+#: admin.php:8
+msgid "BJ Lazy Load Options"
+msgstr "Настройки плагина"
+
+#: admin.php:17
+msgid "Apply to content"
+msgstr "Применять к изображениям в записях"
+
+#: admin.php:20 admin.php:26 admin.php:32 admin.php:38 admin.php:44
+#: admin.php:76 admin.php:84 admin.php:92 admin.php:102 admin.php:112
+msgid "Yes"
+msgstr "Да"
+
+#: admin.php:20 admin.php:26 admin.php:32 admin.php:38 admin.php:44
+#: admin.php:76 admin.php:84 admin.php:92 admin.php:102 admin.php:112
+msgid "No"
+msgstr "Нет"
+
+#: admin.php:23
+msgid "Apply to post thumbnails"
+msgstr "Применять к миниатюрам записей"
+
+#: admin.php:29
+msgid "Apply to gravatars"
+msgstr "Применять к изображениям граватар"
+
+#: admin.php:35
+msgid "Lazy load images"
+msgstr "Постзагрузка изображений"
+
+#: admin.php:41
+msgid "Lazy load iframes"
+msgstr "Постзагрузка фреймов iframe"
+
+#: admin.php:47
+msgid "Theme loader function"
+msgstr "Функция загрузчика темы"
+
+#: admin.php:53
+msgid "Placeholder Image URL"
+msgstr "Ссылка на графический плейсхолдер"
+
+#: admin.php:56
+msgid "Leave blank for default"
+msgstr "Чтобы использовать значение по умолчанию, оставьте поле путым"
+
+#: admin.php:59
+msgid "Skip images with classes"
+msgstr "Пропускать изображения, использующие значения class:"
+
+#: admin.php:62
+msgid "Comma separated. Example: \"no-lazy, lazy-ignore, image-235\""
+msgstr "Разделять запятыми. Например: \"no-lazy, lazy-ignore, image-235\""
+
+#: admin.php:65
+msgid "Threshold"
+msgstr "Начало загрузки"
+
+#: admin.php:68
+msgid ""
+"How close to the viewport the element should be when we load it. In pixels. "
+"Example: 200"
+msgstr ""
+"Как \"близко\" к изображению нужно находиться, чтобы оно стало загружаться. "
+"В пикселях. Например: 200"
+
+#: admin.php:73
+msgid "Infinite scroll"
+msgstr "Бесконечная прокрутка"
+
+#: admin.php:77
+msgid "Enable if your theme uses infinite scroll."
+msgstr ""
+"Включите опцию, если используется бесконечная прокрутка (т.е. нет "
+"постраничной навигации, контент подгружается при прокрутке страницы вниз)"
+
+#: admin.php:81
+msgid "Load hiDPI (retina) images"
+msgstr "Загрузка hiDPI изображений (ретина)"
+
+#: admin.php:85
+msgid ""
+"Will load hiDPI version of the images if the current browser/screen supports "
+"them. (Experimental feature. Do NOT enable if you are using a CDN)"
+msgstr ""
+"Будет загружать hiDPI изображения, если браузер/экран поддерживает их "
+"(экспериментальная функция, не использовать с CDN)."
+
+#: admin.php:89
+msgid "Load responsive images"
+msgstr "Загрузка \"гибких\" изображений"
+
+#: admin.php:93
+msgid ""
+"Will load scaled down version of the images if the image is scaled down in "
+"the theme. (Experimental feature. Do NOT enable if you are using a CDN)"
+msgstr ""
+"Будет загружать уменьшенные изображения, если тема оформления меняет "
+"разрешение изображений для мобильных браузеров (экспериментальная функция, "
+"не использовать с CDN)."
+
+#: admin.php:99
+msgid "Disable on WPTouch"
+msgstr "Отключить для WPTouch"
+
+#: admin.php:103
+msgid "Disables BJ Lazy Load when the WPTouch mobile theme is used"
+msgstr ""
+"Отключить BJ Lazy Load если используется мобильная тема оформления, "
+"созданная плагином WPTouch"
+
+#: admin.php:109
+msgid "Disable on MobilePress"
+msgstr "Отключить для MobilePress"
+
+#: admin.php:113
+msgid "Disables BJ Lazy Load when the MobilePress mobile theme is used"
+msgstr ""
+"Отключить BJ Lazy Load если используется мобильная тема оформления, "
+"созданная плагином MobilePress"
+
+#: inc/class-bjll-skip-post.php:37
+msgid "Lazy Loading"
+msgstr "\"Ленивая\" загрузка"
+
+#: inc/class-bjll-skip-post.php:50
+msgid "Skip lazy loading for this page"
+msgstr "Пропустить обработку изображений для этой страницы"
+
+#: inc/class-bjll-skip-post.php:50
+msgid "Skip lazy loading for this post"
+msgstr "Пропустить обработку изображений для этой записи"
+
+#: scb/AdminPage.php:227
+msgid "Settings <strong>saved</strong>."
+msgstr "Настройки <strong>сохранены</strong>."
+
+#: scb/AdminPage.php:466
+msgid "Settings"
+msgstr "Настройки"
+
+#. Plugin Name of the plugin/theme
+msgid "BJ Lazy Load"
+msgstr "BJ Lazy Load"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/bj-lazy-load/"
+msgstr "http://wordpress.org/extend/plugins/bj-lazy-load/"
+
+#. Description of the plugin/theme
+msgid "Lazy image loading makes your site load faster and saves bandwidth."
+msgstr ""
+"С помощью плагина изображения загружаются после страницы, ускоряя время "
+"загрузки и уменьшая трафик."
+
+#. Author of the plugin/theme
+msgid "Bjørn Johansen"
+msgstr "Bjørn Johansen"
+
+#. Author URI of the plugin/theme
+msgid "http://twitter.com/bjornjohansen"
+msgstr "http://twitter.com/bjornjohansen"

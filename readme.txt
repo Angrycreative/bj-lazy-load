@@ -3,9 +3,8 @@ Contributors: bjornjohansen
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NLUWR4SHCJRBJ
 Tags: images, iframes, lazy loading, jquery, javascript, optimize, performance, bandwidth, responsive design, hidpi, retina
 Author URI: http://twitter.com/bjornjohansen
-Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 0.6.8
+Requires at least: 3.5
+Stable tag: 0.7.0
 
 Lazy loading makes your site load faster and saves bandwidth. Uses jQuery and degrades gracefully for non-js users. Works with both images and iframes.
 
@@ -30,14 +29,16 @@ Please let me know if you have any issues. Fastest way to get a response is by T
 3. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Optional usage ==
-If you have images output in custom templates or want to lazy load other images in your theme, you may filter the HTML through BJLL::filter():
+If you have images output in custom templates or want to lazy load other images in your theme, you may pass the HTML through a filter:
+
 `<?php
-$img = '<img src="myimage.jpg" alt="">';
-if ( class_exists( 'BJLL' ) ) {
-	$img = BJLL::filter( $img );
-}
-echo $img;
+$img_html = '<img src="myimage.jpg" alt="">';
+$img_html = apply_filters( 'bj_lazy_load_html', $img_html );
+echo $img_html;
 ?>`
+
+Note for developers: The filter has a priority of 10.
+
 
 == Frequently Asked Questions ==
 
@@ -60,12 +61,32 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 
 == Changelog ==
 
+= Version 0.7.0 =
+* Added meta box to all public post types to exclude BJ Lazy Load for individual posts/pages
+* Placeholder image is replaced with a really short data-uri (thanks @jruizcantero)
+* Added a proper WordPress filter method for arbitrary HTML filtering with: apply_filters( 'bj_lazy_load_html', $html )
+* Updated scbFramework to release 58 (no more strict warnings in admin)
+* Updated jQuery.sonar to latest version (as of 2013-11-13)
+* Added POT file (Go translate!)
+* Added translation to Norwegian Bokmål (nb_NO)
+* Added translation to Russian (ru_RU) by Elvisrk
+
+= Version 0.6.10 =
+* Responsive and HiDPI images works with MultiSite subfolders
+* Lazy loading is disabled on Opera Mini
+* Removed leftin print_filters_for() function (sry)
+* User definable threshold
+
+= Version 0.6.9 =
+* Bugfix: Single quotes for the class attribute is now handled (thanks @kReEsTaL)
+* Bugfix: Removed strict error notice (thanks syndrael)
+
 = Version 0.6.8 =
 * Bugfix: sonar.js wouldn't load properly when SCRIPT_DEBUG was set to true (thanks @techawakening)
 
 = Version 0.6.7 =
 * Combined JS files for faster loading
-* Bugfix for when viewport is resized – now triggering scroll event (thanks kReEsTaL)
+* Bugfix for when viewport is resized – now triggering scroll event (thanks @kReEsTaL)
 
 = Version 0.6.6 =
 * Option to disable BJ Lazy Load for MobilePress
@@ -161,6 +182,12 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 * It works (or at least it does for me)
 
 == Upgrade Notice ==
+
+= 0.6.10 =
+Works with Opera Mini
+
+= 0.6.9 =
+Bugfix release
 
 = 0.6.8 =
 Bugfix: Works with SCRIPT_DEBUG
