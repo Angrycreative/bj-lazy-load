@@ -29,6 +29,7 @@ License: GPL2
 require_once( dirname(__FILE__) . '/scb/load.php' );
 require_once( dirname(__FILE__) . '/inc/lang.php' );
 require_once( dirname(__FILE__) . '/inc/class-bjll-skip-post.php' );
+require_once( dirname(__FILE__) . '/inc/class-bjll-image-resizer.php' );
 
 if ( ! class_exists( 'BJLL' ) ) {
 	class BJLL {
@@ -117,7 +118,8 @@ if ( ! class_exists( 'BJLL' ) ) {
 			$bjll_options = array();
 
 			if ( $options->get('load_hidpi') == 'yes' || $options->get('load_responsive') == 'yes' ) {
-				$bjll_options['thumb_base'] = plugins_url( '/thumb.php', __FILE__ ) . '?src=';
+				//$bjll_options['thumb_base'] = plugins_url( '/thumb.php', __FILE__ ) . '?src=';
+				$bjll_options['thumb_base'] = add_query_arg( array( 'bjll' => 'image', 'img' => '' ), home_url() . '/' ) . '=';
 				$bjll_options['load_hidpi'] = $options->get('load_hidpi');
 				$bjll_options['load_responsive'] = $options->get('load_responsive');
 
