@@ -33,7 +33,7 @@ var BJLL = BJLL || {};
 						if ( 'undefined' != typeof ( BJLL.site_url ) && 'undefined' != typeof ( BJLL.network_site_url ) ) {
 							srcimgurl = srcimgurl.replace( BJLL.site_url, BJLL.network_site_url );
 						}
-						imgurl = BJLL.thumb_base + escape( srcimgurl ) + '&w=' + loadimgwidth;
+						imgurl = BJLL.thumb_base + encodeURIComponent( srcimgurl ) + '&w=' + loadimgwidth;
 					}
 
 				}

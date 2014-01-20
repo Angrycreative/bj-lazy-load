@@ -3,7 +3,7 @@
 Plugin Name: BJ Lazy Load
 Plugin URI: http://wordpress.org/extend/plugins/bj-lazy-load/
 Description: Lazy image loading makes your site load faster and saves bandwidth.
-Version: 0.7.0
+Version: 0.7.1
 Author: Bjørn Johansen
 Author URI: http://twitter.com/bjornjohansen
 Text Domain: bj-lazy-load
@@ -33,7 +33,7 @@ require_once( dirname(__FILE__) . '/inc/class-bjll-skip-post.php' );
 if ( ! class_exists( 'BJLL' ) ) {
 	class BJLL {
 
-		const version = '0.7.0';
+		const version = '0.7.1';
 		protected $_placeholder_url;
 		protected $_skip_classes;
 		
