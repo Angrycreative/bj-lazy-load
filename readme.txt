@@ -41,6 +41,7 @@ echo $img_html;
 
 Note for developers: The filter has a priority of 10.
 
+The Javascript Event `lazyload.bj` is fired when an image or iframe was loaded.
 
 == Frequently Asked Questions ==
 

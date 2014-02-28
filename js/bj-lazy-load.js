@@ -42,12 +42,13 @@ var BJLL = BJLL || {};
 					.attr( 'src', imgurl )
 					.removeClass( 'lazy-hidden' )
 					.fadeIn();
+				$el.trigger('lazyload.bj');
 			} else if ( data_lazy_type == 'iframe' ) {
-				$el.replaceWith(
-					bj_lazy_load_base64_decode(
-						$el.attr( 'data-lazy-src' )
-					)
-				);
+				var $iframe = $(bj_lazy_load_base64_decode(
+					$el.attr( 'data-lazy-src' )
+				));
+				$el.replaceWith($iframe);
+				$iframe.trigger('lazyload.bj');
 			}
 		}).addClass( 'data-lazy-ready' );
 		
