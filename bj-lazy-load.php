@@ -78,6 +78,9 @@ if ( ! class_exists( 'BJLL' ) ) {
 			if ( $options->get( 'filter_content' ) == 'yes' ) {
 				add_filter( 'the_content', array( $this, 'filter' ), 200 );
 			}
+			if ( $options->get( 'filter_widget_text' ) == 'yes' ) {
+				add_filter( 'widget_text', array( $this, 'filter' ), 200 );
+			}
 			if ( $options->get( 'filter_post_thumbnails' ) == 'yes' ) {
 				add_filter( 'post_thumbnail_html', array( $this, 'filter' ), 200 );
 			}
@@ -237,6 +240,7 @@ if ( ! class_exists( 'BJLL' ) ) {
 		protected static function _get_options() {
 			return new scbOptions( 'bj_lazy_load_options', __FILE__, array(
 				'filter_content'          => 'yes',
+				'filter_widget_text'      => 'yes',
 				'filter_post_thumbnails'  => 'yes',
 				'filter_gravatars'        => 'yes',
 				'lazy_load_images'        => 'yes',
