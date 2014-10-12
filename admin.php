@@ -22,7 +22,7 @@ class BJLL_Admin_Page extends scbAdminPage {
 			array(
 				'title' => __( 'Apply to text widgets', 'bj-lazy-load' ),
 				'type' => 'radio',
-				'name' => 'filter_text_widgets',
+				'name' => 'filter_widget_text',
 				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
 			),
 			array(
