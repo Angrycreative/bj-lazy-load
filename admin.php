@@ -20,6 +20,12 @@ class BJLL_Admin_Page extends scbAdminPage {
 				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
 			),
 			array(
+				'title' => __( 'Apply to text widgets', 'bj-lazy-load' ),
+				'type' => 'radio',
+				'name' => 'filter_widget_text',
+				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
+			),
+			array(
 				'title' => __( 'Apply to post thumbnails', 'bj-lazy-load' ),
 				'type' => 'radio',
 				'name' => 'filter_post_thumbnails',
