@@ -4,15 +4,15 @@ Donate link: http://www.kiva.org/
 Tags: images, iframes, lazy loading, jquery, javascript, optimize, performance, bandwidth, responsive design, hidpi, retina
 Author URI: http://twitter.com/bjornjohansen
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 0.7.2
+Tested up to: 4.0
+Stable tag: 0.7.5
 
 Lazy loading makes your site load faster and saves bandwidth. Uses jQuery and degrades gracefully for non-js users. Works with both images and iframes.
 
 == Description ==
 Lazy loading makes your site load faster and saves bandwidth.
 
-This plugin replaces all your post images, post thumbnails, gravatar images and content iframes with a placeholder and loads the content as it gets close to enter the browser window when the visitor scrolls the page.
+This plugin replaces all your post images, post thumbnails, gravatar images and content iframes with a placeholder and loads the content as it gets close to enter the browser window when the visitor scrolls the page. Also works with text widgets.
 
 You can also lazy load other images and iframes in your theme, by using a simple function.
 
@@ -62,8 +62,17 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 
 == Changelog ==
 
+= Version 0.7.5 =
+* Also applies to text widgets (Thanks to Sigurður Guðbrandsson)
+
+= Version 0.7.4 =
+* Skips lazy loading of data-URIs
+
+= Version 0.7.3 =
+* Works with newlines in the HTML string for the IMG element
+
 = Version 0.7.2 =
-Re-minified the combined js file for better compability with faulty minifiers
+* Re-minified the combined js file for better compability with faulty minifiers
 
 = Version 0.7.1 =
 * Proper encoding of non-ASCII characters in filenames when using responsive or hiDPI images (thanks @testsiteoop)
@@ -189,6 +198,9 @@ Re-minified the combined js file for better compability with faulty minifiers
 * It works (or at least it does for me)
 
 == Upgrade Notice ==
+
+= 0.7.5 =
+Also applies to text widgets
 
 = 0.7.2 =
 Improved minification compability

@@ -3,13 +3,13 @@
 Plugin Name: BJ Lazy Load
 Plugin URI: http://wordpress.org/extend/plugins/bj-lazy-load/
 Description: Lazy image loading makes your site load faster and saves bandwidth.
-Version: 0.7.2
+Version: 0.7.5
 Author: Bjørn Johansen
 Author URI: http://twitter.com/bjornjohansen
 Text Domain: bj-lazy-load
 License: GPL2
 
-    Copyright 2011–2013  Bjørn Johansen  (email : post@bjornjohansen.no)
+    Copyright 2011–2014  Bjørn Johansen  (email : post@bjornjohansen.no)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -33,7 +33,7 @@ require_once( dirname(__FILE__) . '/inc/class-bjll-skip-post.php' );
 if ( ! class_exists( 'BJLL' ) ) {
 	class BJLL {
 
-		const version = '0.7.2';
+		const version = '0.7.5';
 		protected $_placeholder_url;
 		protected $_skip_classes;
 		
@@ -172,28 +172,28 @@ if ( ! class_exists( 'BJLL' ) ) {
 		protected function _filter_images( $content ) {
 		
 			$matches = array();
-			preg_match_all( '/<img\s+.*?>/', $content, $matches );
+			preg_match_all( '/<img[\s\r\n]+.*?>/is', $content, $matches );
 			
 			$search = array();
 			$replace = array();
 
 			if ( is_array( $this->_skip_classes ) ) {
 				$skip_images_preg_quoted = array_map( 'preg_quote', $this->_skip_classes );
-				$skip_images_regex = sprintf( '/class=".*(%s).*"/', implode( '|', $skip_images_preg_quoted ) );
+				$skip_images_regex = sprintf( '/class=".*(%s).*"/s', implode( '|', $skip_images_preg_quoted ) );
 			}
 			
 			foreach ( $matches[0] as $imgHTML ) {
 				
-				// don't to the replacement if a skip class is provided and the image has the class
-				if ( ! ( is_array( $this->_skip_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) ) {
+				// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
+				if ( ! ( is_array( $this->_skip_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) ) {
 					// replace the src and add the data-src attribute
-					$replaceHTML = preg_replace( '/<img(.*?)src=/i', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
+					$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 					
 					// add the lazy class to the img element
 					if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
-						$replaceHTML = preg_replace( '/class=(["\'])(.*?)["\']/i', 'class=$1lazy lazy-hidden $2$1', $replaceHTML );
+						$replaceHTML = preg_replace( '/class=(["\'])(.*?)["\']/is', 'class=$1lazy lazy-hidden $2$1', $replaceHTML );
 					} else {
-						$replaceHTML = preg_replace( '/<img/i', '<img class="lazy lazy-hidden"', $replaceHTML );
+						$replaceHTML = preg_replace( '/<img/is', '<img class="lazy lazy-hidden"', $replaceHTML );
 					}
 					
 					$replaceHTML .= '<noscript>' . $imgHTML . '</noscript>';
