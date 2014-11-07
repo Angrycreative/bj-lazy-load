@@ -48,6 +48,15 @@ var BJLL = BJLL || {};
 						$el.attr( 'data-lazy-src' )
 					)
 				);
+			} else if ( data_lazy_type == 'twitter' ) {
+				$el.replaceWith(
+					bj_lazy_load_base64_decode(
+						$el.attr( 'data-lazy-src' )
+					)
+				);
+				if (typeof twttr !== "undefined") {
+					twttr.widgets.load();
+				}
 			}
 		}).addClass( 'data-lazy-ready' );
 		
