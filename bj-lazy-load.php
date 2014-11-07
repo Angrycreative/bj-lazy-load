@@ -78,7 +78,11 @@ if ( ! class_exists( 'BJLL' ) ) {
 			if ( $options->get( 'filter_content' ) == 'yes' ) {
 				add_filter( 'the_content', array( $this, 'filter' ), 200 );
 			}
-			if ( $options->get( 'filter_widget_text' ) == 'yes' ) {
+			if ( $options->get( 'filter_sidebar_widgets' ) == 'yes' ) {
+				add_action( 'dynamic_sidebar_before', array( $this, 'observe_sidebar' ), 200 );
+				add_action( 'dynamic_sidebar_after', array( $this, 'stop_observing_sidebar_and_output_sidebar' ), 200 );
+			}
+			if ( $options->get( 'filter_sidebar_widgets' ) == 'only_text_widgets' ) {
 				add_filter( 'widget_text', array( $this, 'filter' ), 200 );
 			}
 			if ( $options->get( 'filter_post_thumbnails' ) == 'yes' ) {
@@ -165,6 +169,10 @@ if ( ! class_exists( 'BJLL' ) ) {
 			if ( $options->get('lazy_load_iframes') == 'yes' ) {
 				$content = $BJLL->_filter_iframes( $content );
 			}
+			
+			if ( $options->get('lazy_load_twitter_timeline') == 'yes' ) {
+				$content = $BJLL->_filter_twitter_timeline( $content );
+			}
 		
 			return $content;
 		}
@@ -237,23 +245,47 @@ if ( ! class_exists( 'BJLL' ) ) {
 			return $content;
 		}
 		
+		protected function _filter_twitter_timeline( $content ) {
+		
+			$matches = array();
+			preg_match_all( '/<a\s+[^>]*?class="twitter-timeline".*?<\/a>/s', $content, $matches );
+			
+			$search = array();
+			$replace = array();
+			
+			foreach ( $matches[0] as $twitterTimelineHTML ) {
+				
+				$replaceHTML = '<img src="' . $this->_placeholder_url . '"  class="lazy lazy-hidden" data-lazy-type="twitter" data-lazy-src="' . base64_encode($twitterTimelineHTML) . '" alt="">';
+				
+				$replaceHTML .= '<noscript>' . $twitterTimelineHTML . '</noscript>';
+				
+				array_push( $search, $twitterTimelineHTML );
+				array_push( $replace, $replaceHTML );
+			}
+		
+			$content = str_replace( $search, $replace, $content );
+			
+			return $content;
+		}
+		
 		protected static function _get_options() {
 			return new scbOptions( 'bj_lazy_load_options', __FILE__, array(
-				'filter_content'          => 'yes',
-				'filter_widget_text'      => 'yes',
-				'filter_post_thumbnails'  => 'yes',
-				'filter_gravatars'        => 'yes',
-				'lazy_load_images'        => 'yes',
-				'lazy_load_iframes'       => 'yes',
-				'theme_loader_function'   => 'wp_footer',
-				'placeholder_url'         => '',
-				'skip_classes'            => '',
-				'load_hidpi'              => 'no',
-				'load_responsive'         => 'no',
-				'disable_on_wptouch'      => 'yes',
-				'disable_on_mobilepress'  => 'yes',
-				'infinite_scroll'         => 'no',
-				'threshold'               => '200'
+				'filter_content'             => 'yes',
+				'filter_sidebar_widgets'     => 'yes',
+				'filter_post_thumbnails'     => 'yes',
+				'filter_gravatars'           => 'yes',
+				'lazy_load_images'           => 'yes',
+				'lazy_load_iframes'          => 'yes',
+				'lazy_load_twitter_timeline' => 'yes',
+				'theme_loader_function'      => 'wp_footer',
+				'placeholder_url'            => '',
+				'skip_classes'               => '',
+				'load_hidpi'                 => 'no',
+				'load_responsive'            => 'no',
+				'disable_on_wptouch'         => 'yes',
+				'disable_on_mobilepress'     => 'yes',
+				'infinite_scroll'            => 'no',
+				'threshold'                  => '200'
 			) );
 		}
 		
@@ -308,6 +340,28 @@ if ( ! class_exists( 'BJLL' ) ) {
 			}
 
 			return false;
+		}
+		
+		function observe_sidebar() {
+			if ( !is_admin() ) {
+				// Only start observing output if we're not in the admin area
+				ob_start();
+			}
+		}
+		
+		function stop_observing_sidebar_and_output_sidebar() {
+			if ( !is_admin() ) {
+				// Only work with observer if we're not in the admin area
+				
+				// Get the sidebar content and shut down the observer
+				$sidebar_contents = ob_get_clean();
+				
+				// Process the sidebar content for iframes and images
+				$sidebar_contents = $this->filter($sidebar_contents);
+				
+				// Output the sidebar content
+				echo $sidebar_contents;
+			}
 		}
 		
 	}
