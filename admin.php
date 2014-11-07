@@ -20,10 +20,10 @@ class BJLL_Admin_Page extends scbAdminPage {
 				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
 			),
 			array(
-				'title' => __( 'Apply to text widgets', 'bj-lazy-load' ),
+				'title' => __( 'Apply to sidebar widgets', 'bj-lazy-load' ),
 				'type' => 'radio',
-				'name' => 'filter_widget_text',
-				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
+				'name' => 'filter_sidebar_widgets',
+				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ), 'only_text_widgets' => __( 'Only Text Widgets', 'bj-lazy-load' ) ),
 			),
 			array(
 				'title' => __( 'Apply to post thumbnails', 'bj-lazy-load' ),
@@ -47,6 +47,12 @@ class BJLL_Admin_Page extends scbAdminPage {
 				'title' => __( 'Lazy load iframes', 'bj-lazy-load' ),
 				'type' => 'radio',
 				'name' => 'lazy_load_iframes',
+				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
+			),
+			array(
+				'title' => __( 'Lazy load twitter timeline', 'bj-lazy-load' ),
+				'type' => 'radio',
+				'name' => 'lazy_load_twitter_timeline',
 				'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
 			),
 			array(
