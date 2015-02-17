@@ -75,17 +75,22 @@ if ( ! class_exists( 'BJLL' ) ) {
 				$this->_placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
 			}
 			
-			if ( $options->get( 'filter_content' ) == 'yes' ) {
-				add_filter( 'the_content', array( $this, 'filter' ), 200 );
-			}
-			if ( $options->get( 'filter_widget_text' ) == 'yes' ) {
-				add_filter( 'widget_text', array( $this, 'filter' ), 200 );
-			}
-			if ( $options->get( 'filter_post_thumbnails' ) == 'yes' ) {
-				add_filter( 'post_thumbnail_html', array( $this, 'filter' ), 200 );
-			}
-			if ( $options->get( 'filter_gravatars' ) == 'yes' ) {
-				add_filter( 'get_avatar', array( $this, 'filter' ), 200 );
+			if ( !is_admin() ) {
+				if ( $options->get( 'filter_content' ) == 'yes' ) {
+					add_filter( 'the_content', array( $this, 'filter' ), 200 );
+
+				}
+				if ( $options->get( 'filter_widget_text' ) == 'yes' ) {
+					add_filter( 'widget_text', array( $this, 'filter' ), 200 );
+
+				}
+				if ( $options->get( 'filter_post_thumbnails' ) == 'yes' ) {
+					add_filter( 'post_thumbnail_html', array( $this, 'filter' ), 200 );
+
+				}
+				if ( $options->get( 'filter_gravatars' ) == 'yes' ) {
+					add_filter( 'get_avatar', array( $this, 'filter' ), 200 );
+				}
 			}
 		}
 		
