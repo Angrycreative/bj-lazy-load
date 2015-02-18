@@ -196,6 +196,8 @@ if ( ! class_exists( 'BJLL' ) ) {
 					// replace the src and add the data-src attribute
 					$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 					
+					// also replace the srcset (responsive images)
+					$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
 					// add the lazy class to the img element
 					if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
 						$replaceHTML = preg_replace( '/class=(["\'])(.*?)["\']/is', 'class=$1lazy lazy-hidden $2$1', $replaceHTML );
