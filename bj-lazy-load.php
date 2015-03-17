@@ -212,7 +212,7 @@ if ( ! class_exists( 'BJLL' ) ) {
 		protected function _filter_iframes( $content ) {
 		
 			$matches = array();
-			preg_match_all( '/<iframe\s+.*?>/', $content, $matches );
+			preg_match_all( '|<iframe\s+.*?</iframe>|siU', $content, $matches );
 			
 			$search = array();
 			$replace = array();
