@@ -75,17 +75,22 @@ if ( ! class_exists( 'BJLL' ) ) {
 				$this->_placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
 			}
 			
-			if ( $options->get( 'filter_content' ) == 'yes' ) {
-				add_filter( 'the_content', array( $this, 'filter' ), 200 );
-			}
-			if ( $options->get( 'filter_widget_text' ) == 'yes' ) {
-				add_filter( 'widget_text', array( $this, 'filter' ), 200 );
-			}
-			if ( $options->get( 'filter_post_thumbnails' ) == 'yes' ) {
-				add_filter( 'post_thumbnail_html', array( $this, 'filter' ), 200 );
-			}
-			if ( $options->get( 'filter_gravatars' ) == 'yes' ) {
-				add_filter( 'get_avatar', array( $this, 'filter' ), 200 );
+			if ( !is_admin() ) {
+				if ( $options->get( 'filter_content' ) == 'yes' ) {
+					add_filter( 'the_content', array( $this, 'filter' ), 200 );
+
+				}
+				if ( $options->get( 'filter_widget_text' ) == 'yes' ) {
+					add_filter( 'widget_text', array( $this, 'filter' ), 200 );
+
+				}
+				if ( $options->get( 'filter_post_thumbnails' ) == 'yes' ) {
+					add_filter( 'post_thumbnail_html', array( $this, 'filter' ), 200 );
+
+				}
+				if ( $options->get( 'filter_gravatars' ) == 'yes' ) {
+					add_filter( 'get_avatar', array( $this, 'filter' ), 200 );
+				}
 			}
 		}
 		
@@ -187,11 +192,15 @@ if ( ! class_exists( 'BJLL' ) ) {
 			
 			foreach ( $matches[0] as $imgHTML ) {
 				
+				//don't process $imgHTML twice
+				if ( strpos( $imgHTML, 'data-lazy-src' ) ) continue;
 				// don't to the replacement if a skip class is provided and the image has the class, or if the image is a data-uri
 				if ( ! ( is_array( $this->_skip_classes ) && preg_match( $skip_images_regex, $imgHTML ) ) && ! preg_match( "/src=['\"]data:image/is", $imgHTML ) ) {
 					// replace the src and add the data-src attribute
 					$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $this->_placeholder_url . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 					
+					// also replace the srcset (responsive images)
+					$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
 					// add the lazy class to the img element
 					if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
 						$replaceHTML = preg_replace( '/class=(["\'])(.*?)["\']/is', 'class=$1lazy lazy-hidden $2$1', $replaceHTML );

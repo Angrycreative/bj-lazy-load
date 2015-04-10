@@ -19,6 +19,7 @@ var BJLL = BJLL || {};
 			if ( data_lazy_type == 'image' ) {
 
 				var imgurl = $el.attr( 'data-lazy-src' );
+				var srcset = $el.attr( 'data-lazy-srcset' );
 
 				if ( BJLL.load_responsive == 'yes' || BJLL.load_hidpi == 'yes' ) {
 					var l = document.createElement( 'a' );
@@ -39,8 +40,14 @@ var BJLL = BJLL || {};
 				}
 
 				$el.hide()
+					.attr( 'srcset', srcset )
 					.attr( 'src', imgurl )
-					.removeClass( 'lazy-hidden' )
+				// reevaluate picturefill (let the browser know that srcset has changed and load responsive images)
+				if (typeof picturefill !== 'undefined' && $.isFunction(picturefill)) {
+					picturefill();
+				}
+				
+				$el.removeClass( 'lazy-hidden' )
 					.fadeIn();
 			} else if ( data_lazy_type == 'iframe' ) {
 				$el.replaceWith(
