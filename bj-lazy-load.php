@@ -170,9 +170,12 @@ if ( ! class_exists( 'BJLL' ) ) {
 		}
 		
 		protected function _filter_images( $content ) {
-		
+
+			// Make sure we don't mess with the contents of <noscript>
+			$match_content = $this->remove_noscript($content);
+
 			$matches = array();
-			preg_match_all( '/<img[\s\r\n]+.*?>/is', $content, $matches );
+			preg_match_all( '/<img[\s\r\n]+.*?>/is', $match_content, $matches );
 			
 			$search = array();
 			$replace = array();
@@ -210,9 +213,12 @@ if ( ! class_exists( 'BJLL' ) ) {
 		}
 		
 		protected function _filter_iframes( $content ) {
-		
+
+			// Make sure we don't mess with the contents of <noscript>
+			$match_content = $this->remove_noscript($content);
+
 			$matches = array();
-			preg_match_all( '/<iframe\s+.*?>/', $content, $matches );
+			preg_match_all( '/<iframe\s+.*?>/', $match_content, $matches );
 			
 			$search = array();
 			$replace = array();
@@ -235,6 +241,10 @@ if ( ! class_exists( 'BJLL' ) ) {
 			$content = str_replace( $search, $replace, $content );
 			
 			return $content;
+		}
+		
+		protected function remove_noscript($content) {
+			return preg_replace('/<noscript.*?(\/noscript>)/', '', $content);
 		}
 		
 		protected static function _get_options() {
