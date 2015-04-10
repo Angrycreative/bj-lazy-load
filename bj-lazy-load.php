@@ -218,7 +218,7 @@ if ( ! class_exists( 'BJLL' ) ) {
 			$match_content = $this->remove_noscript($content);
 
 			$matches = array();
-			preg_match_all( '/<iframe\s+.*?>/', $match_content, $matches );
+			preg_match_all( '|<iframe\s+.*?</iframe>|siU', $match_content, $matches );
 			
 			$search = array();
 			$replace = array();
