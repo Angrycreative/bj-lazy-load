@@ -31,6 +31,10 @@ msgid "No"
 msgstr ""
 
 #: admin.php:23
+msgid "Apply to text widgets"
+msgstr ""
+
+#: admin.php:29
 msgid "Apply to post thumbnails"
 msgstr ""
 
