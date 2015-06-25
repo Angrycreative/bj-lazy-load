@@ -5,7 +5,7 @@ class BJLL_Admin_Page extends scbAdminPage {
 	function setup() {
 		$this->args = array(
 			'menu_title' => 'BJ Lazy Load',
-			'page_title' => __( 'BJ Lazy Load Options', 'bj-lazy-load' ),
+			'page_title' => 'BJ Lazy Load Options',
 		);
 	}
 	

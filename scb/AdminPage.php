@@ -160,7 +160,7 @@ abstract class scbAdminPage {
 	function page_header() {
 		echo "<div class='wrap'>\n";
 		screen_icon( $this->args['screen_icon'] );
-		echo html( 'h2', $this->args['page_title'] );
+		echo html( 'h2', __( $this->args['page_title'], 'bj-lazy-load' ) );
 	}
 
 	/**
@@ -224,7 +224,7 @@ abstract class scbAdminPage {
 	 */
 	function admin_msg( $msg = '', $class = 'updated' ) {
 		if ( empty( $msg ) )
-			$msg = __( 'Settings <strong>saved</strong>.', $this->textdomain );
+			$msg = __( 'Settings <strong>saved</strong>.', 'bj-lazy-load' );
 
 		echo scb_admin_notice( $msg, $class );
 	}
@@ -409,7 +409,7 @@ abstract class scbAdminPage {
 		if ( ! $this->args['toplevel'] ) {
 			$this->pagehook = add_submenu_page(
 				$this->args['parent'],
-				$this->args['page_title'],
+				__( $this->args['page_title'], 'bj-lazy-load' ),
 				$this->args['menu_title'],
 				$this->args['capability'],
 				$this->args['page_slug'],
@@ -418,7 +418,7 @@ abstract class scbAdminPage {
 		} else {
 			$func = 'add_' . $this->args['toplevel'] . '_page';
 			$this->pagehook = $func(
-				$this->args['page_title'],
+				__( $this->args['page_title'], 'bj-lazy-load' ),
 				$this->args['menu_title'],
 				$this->args['capability'],
 				$this->args['page_slug'],
@@ -429,7 +429,7 @@ abstract class scbAdminPage {
 
 			add_submenu_page(
 				$this->args['page_slug'],
-				$this->args['page_title'],
+				__( $this->args['page_title'], 'bj-lazy-load' ),
 				$this->args['submenu_title'],
 				$this->args['capability'],
 				$this->args['page_slug'],
@@ -463,7 +463,7 @@ abstract class scbAdminPage {
 			'menu_title'            => $this->args['page_title'],
 			'page_slug'             => '',
 			'nonce'                 => '',
-			'action_link'           => __( 'Settings', $this->textdomain ),
+			'action_link'           => 'Settings',
 			'admin_action_priority' => 10,
 		) );
 
@@ -511,7 +511,7 @@ abstract class scbAdminPage {
 	function _action_link( $links ) {
 		$url = add_query_arg( 'page', $this->args['page_slug'], admin_url( $this->args['parent'] ) );
 
-		$links[] = html_link( $url, $this->args['action_link'] );
+		$links[] = html_link( $url, __( $this->args['action_link'] ) );
 
 		return $links;
 	}
