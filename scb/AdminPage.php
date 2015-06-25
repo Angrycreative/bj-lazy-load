@@ -160,7 +160,7 @@ abstract class scbAdminPage {
 	function page_header() {
 		echo "<div class='wrap'>\n";
 		screen_icon( $this->args['screen_icon'] );
-		echo html( 'h2', $this->args['page_title'] );
+		echo html( 'h2', __( $this->args['page_title'], 'bj-lazy-load' ) );
 	}
 
 	/**
@@ -409,7 +409,7 @@ abstract class scbAdminPage {
 		if ( ! $this->args['toplevel'] ) {
 			$this->pagehook = add_submenu_page(
 				$this->args['parent'],
-				$this->args['page_title'],
+				__( $this->args['page_title'], 'bj-lazy-load' ),
 				$this->args['menu_title'],
 				$this->args['capability'],
 				$this->args['page_slug'],
@@ -418,7 +418,7 @@ abstract class scbAdminPage {
 		} else {
 			$func = 'add_' . $this->args['toplevel'] . '_page';
 			$this->pagehook = $func(
-				$this->args['page_title'],
+				__( $this->args['page_title'], 'bj-lazy-load' ),
 				$this->args['menu_title'],
 				$this->args['capability'],
 				$this->args['page_slug'],
@@ -429,7 +429,7 @@ abstract class scbAdminPage {
 
 			add_submenu_page(
 				$this->args['page_slug'],
-				$this->args['page_title'],
+				__( $this->args['page_title'], 'bj-lazy-load' ),
 				$this->args['submenu_title'],
 				$this->args['capability'],
 				$this->args['page_slug'],
