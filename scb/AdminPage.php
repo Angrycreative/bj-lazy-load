@@ -463,7 +463,7 @@ abstract class scbAdminPage {
 			'menu_title'            => $this->args['page_title'],
 			'page_slug'             => '',
 			'nonce'                 => '',
-			'action_link'           => __( 'Settings', $this->textdomain ),
+			'action_link'           => 'Settings',
 			'admin_action_priority' => 10,
 		) );
 
@@ -511,7 +511,7 @@ abstract class scbAdminPage {
 	function _action_link( $links ) {
 		$url = add_query_arg( 'page', $this->args['page_slug'], admin_url( $this->args['parent'] ) );
 
-		$links[] = html_link( $url, $this->args['action_link'] );
+		$links[] = html_link( $url, __( $this->args['action_link'] ) );
 
 		return $links;
 	}
