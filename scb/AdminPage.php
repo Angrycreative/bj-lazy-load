@@ -224,7 +224,7 @@ abstract class scbAdminPage {
 	 */
 	function admin_msg( $msg = '', $class = 'updated' ) {
 		if ( empty( $msg ) )
-			$msg = __( 'Settings <strong>saved</strong>.', $this->textdomain );
+			$msg = __( 'Settings <strong>saved</strong>.', 'bj-lazy-load' );
 
 		echo scb_admin_notice( $msg, $class );
 	}
