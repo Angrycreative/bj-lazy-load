@@ -19,15 +19,9 @@ class BJLL_Options {
 			'filter_gravatars'        => 'yes',
 			'lazy_load_images'        => 'yes',
 			'lazy_load_iframes'       => 'yes',
-			'theme_loader_function'   => 'wp_footer',
 			'placeholder_url'         => '',
 			'skip_classes'            => '',
-			'load_hidpi'              => 'no',
-			'load_responsive'         => 'no',
-			'disable_on_wptouch'      => 'yes',
-			'disable_on_mobilepress'  => 'yes',
-			'infinite_scroll'         => 'no',
-			'threshold'               => '200'
+			'threshold'               => '200',
 		) );
 
 		if ( is_admin() ) {
