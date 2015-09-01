@@ -1,9 +1,16 @@
+var BJLL_options = BJLL_options || {};
 
 var BJLL = {
 
-	threshold: 200,
-
 	check: function () {
+
+		if ( 'undefined' == typeof ( BJLL.threshold ) ) {
+			if ( 'undefined' != typeof ( BJLL_options.threshold ) ) {
+				BJLL.threshold = parseInt( BJLL_options.threshold );
+			} else {
+				BJLL.threshold = 200;
+			}
+		}
 
 		var winH = document.documentElement.clientHeight || body.clientHeight;
 
@@ -12,7 +19,7 @@ var BJLL = {
 
 			var elemRect = el.getBoundingClientRect();
 
-			if ( elemRect.top - winH - BJLL.threshold < 0 ) {
+			if ( winH - elemRect.top + BJLL.threshold > 0 ) {
 				BJLL.show( el );
 			}
 
@@ -20,6 +27,8 @@ var BJLL = {
 	},
 
 	show: function( el ) {
+
+		el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
 
 		el.addEventListener( 'load', function() {
 			BJLL.customEvent( el, 'lazyloaded' );
@@ -32,7 +41,6 @@ var BJLL = {
 			if ( null != el.getAttribute('data-srcset') ) {
 				el.setAttribute( 'srcset', el.getAttribute('data-srcset') );
 			}
-			el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
 		} else if ( 'iframe' == type ) {
 			var s = el.getAttribute('data-lazy-src'),
 				div = document.createElement('div');

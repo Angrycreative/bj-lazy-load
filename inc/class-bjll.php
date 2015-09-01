@@ -52,6 +52,15 @@ class BJLL {
 	public function enqueue_scripts() {
 		$mtime = filemtime( dirname( dirname( __FILE__ ) ) . '/js/bj-lazy-load.js' );
 		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.js', __DIR__ ), null, $mtime, true );
+
+		$bjll_options = array();
+		$threshold = intval( self::_get_option('threshold') );
+		if ( 200 != $threshold ) {
+			$bjll_options['threshold'] = $threshold;
+		}
+		if ( count( $bjll_options ) ) {
+			wp_localize_script( 'BJLL', 'BJLL_options', $bjll_options );
+		}
 	}
 
 	/**
