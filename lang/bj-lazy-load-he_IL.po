@@ -1,0 +1,167 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"Project-Id-Version: BJ Lazy Load\n"
+"Language: he\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: שגיב SEO <Info@sagive.co.il>\n"
+"Language-Team: Sagive SEO <info@sagive.co.il>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin.php:8
+msgid "BJ Lazy Load Options"
+msgstr "אפשרויות תוסף BJ Lazy Load"
+
+#: admin.php:17
+msgid "Apply to content"
+msgstr "החל על התוכן"
+
+#: admin.php:20 admin.php:26 admin.php:32 admin.php:38 admin.php:44
+#: admin.php:76 admin.php:84 admin.php:92 admin.php:102 admin.php:112
+msgid "Yes"
+msgstr "כן"
+
+#: admin.php:20 admin.php:26 admin.php:32 admin.php:38 admin.php:44
+#: admin.php:76 admin.php:84 admin.php:92 admin.php:102 admin.php:112
+msgid "No"
+msgstr "לא"
+
+#: admin.php:23
+msgid "Apply to post thumbnails"
+msgstr "החל על תמונות פוסט ראשיות (Thumbnails)"
+
+#: admin.php:29
+msgid "Apply to gravatars"
+msgstr "החל על תמונות משתמש (גראבטר)"
+
+#: admin.php:35
+msgid "Lazy load images"
+msgstr "החל על תמונות"
+
+#: admin.php:41
+msgid "Lazy load iframes"
+msgstr "החל על איפריימים"
+
+#: admin.php:47
+msgid "Theme loader function"
+msgstr "מיקום הפונקציה"
+
+#: admin.php:53
+msgid "Placeholder Image URL"
+msgstr "תמונת ממלאת מקום"
+
+#: admin.php:56
+msgid "Leave blank for default"
+msgstr "השאירו ריק כדי להשתמש באפשרות ברירת מחדל"
+
+#: admin.php:59
+msgid "Skip images with classes"
+msgstr "לדלג על תמונות עם הקלאס"
+
+#: admin.php:62
+msgid "Comma separated. Example: \"no-lazy, lazy-ignore, image-235\""
+msgstr ""
+"רשימה מופרדת בעזרת פסיקים - לדוגמה: \"no-lazy, lazy-ignore, image-235\""
+
+#: admin.php:65
+msgid "Threshold"
+msgstr "נקודת הפעלה"
+
+#: admin.php:68
+msgid ""
+"How close to the viewport the element should be when we load it. In pixels. "
+"Example: 200"
+msgstr ""
+"מה המרחק של חלון התצוגה מהאלמנט (תמונה / איפריי) בה תתחיל טעינה של האלמנט"
+
+#: admin.php:73
+msgid "Infinite scroll"
+msgstr "גלילה אינסופית"
+
+#: admin.php:77
+msgid "Enable if your theme uses infinite scroll."
+msgstr "בחרו אפשרות זאת אם התבנית שלכם משתמשת בגלילה אינסופית"
+
+#: admin.php:81
+msgid "Load hiDPI (retina) images"
+msgstr "טען תמונות hiDPI (באיכות גבוהה)"
+
+#: admin.php:85
+msgid ""
+"Will load hiDPI version of the images if the current browser/screen supports "
+"them. (Experimental feature. Do NOT enable if you are using a CDN)"
+msgstr ""
+"יאפשר טעינה של תמונות באיכות hiDPI אם הדפדפן / המכשיר שלכם תומך בהם. (תכונה "
+"ניסיונית. אל תאפשרו אם אתם משתמשים בCDN)"
+
+#: admin.php:89
+msgid "Load responsive images"
+msgstr "טען תמונות רספונסיביות"
+
+#: admin.php:93
+msgid ""
+"Will load scaled down version of the images if the image is scaled down in "
+"the theme. (Experimental feature. Do NOT enable if you are using a CDN)"
+msgstr ""
+"יטען גרסאות מוקטנות של התמונות אם קיימת גרסה מוקטנת באתר שלכם. (תכונה "
+"ניסיונית. אל תאפשרו אם אתם משתמשים בCDN)"
+
+#: admin.php:99
+msgid "Disable on WPTouch"
+msgstr "כבה בWPTouch"
+
+#: admin.php:103
+msgid "Disables BJ Lazy Load when the WPTouch mobile theme is used"
+msgstr "כבה את BJ Lazy Load כאשר אתם הגולש צופה בגרסת WPTouch של האתר שלכם."
+
+#: admin.php:109
+msgid "Disable on MobilePress"
+msgstr "כבה בMobilePress"
+
+#: admin.php:113
+msgid "Disables BJ Lazy Load when the MobilePress mobile theme is used"
+msgstr "כבה את MobilePress כאשר אתם הגולש צופה בגרסת MobilePress של האתר שלכם."
+
+#: inc/class-bjll-skip-post.php:37
+msgid "Lazy Loading"
+msgstr "טעינה מושהית"
+
+#: inc/class-bjll-skip-post.php:50
+msgid "Skip lazy loading for this page"
+msgstr "כבה טעינה מושהית (Lazy Loading) בדףזה"
+
+#: inc/class-bjll-skip-post.php:50
+msgid "Skip lazy loading for this post"
+msgstr "כבה טעינה מושהית (Lazy Loading) בפוסט זה"
+
+#: scb/AdminPage.php:227
+msgid "Settings <strong>saved</strong>."
+msgstr "ההגדרות <strong>נשמרו</strong>."
+
+#: scb/AdminPage.php:466
+msgid "Settings"
+msgstr "הגדרות"
+
+#. Plugin Name of the plugin/theme
+msgid "BJ Lazy Load"
+msgstr "BJ Lazy Load"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/bj-lazy-load/"
+msgstr "http://wordpress.org/extend/plugins/bj-lazy-load/"
+
+#. Description of the plugin/theme
+msgid "Lazy image loading makes your site load faster and saves bandwidth."
+msgstr "טעינה מושהית של תמונות עוזרת להאיץ את האתר שלכם ולחסוך תעבורה"
+
+#. Author of the plugin/theme
+msgid "Bjørn Johansen"
+msgstr "Bjørn Johansen"
+
+#. Author URI of the plugin/theme
+msgid "http://twitter.com/bjornjohansen"
+msgstr "http://twitter.com/bjornjohansen"
