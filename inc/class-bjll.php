@@ -70,8 +70,11 @@ class BJLL {
 	 * Enqueue scripts
 	 */
 	public function enqueue_scripts() {
-		$mtime = filemtime( dirname( dirname( __FILE__ ) ) . '/js/bj-lazy-load.js' );
-		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.js', __DIR__ ), null, $mtime, true );
+		//$mtime = filemtime( dirname( __DIR__ ) . '/js/bj-lazy-load.js' );
+		//wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.js', __DIR__ ), null, $mtime, true );
+		//$mtime = filemtime( dirname( __DIR__ ) . '/js/bj-lazy-load.v1.min.js' );
+		$mtime = 1;
+		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.min.js', __DIR__ ), null, $mtime, true );
 
 		$bjll_options = array();
 		$threshold = intval( self::_get_option('threshold') );
