@@ -149,6 +149,12 @@ class BJLL {
 	 */
 	public static function filter( $content ) {
 
+		// Last chance to bail out before running the filter
+		$run_filter = apply_filters( 'bj_lazy_load_run_filter', true );
+		if ( ! $run_filter ) {
+			return $content;
+		}
+
 		/**
 		 * Filter the content
 		 *
