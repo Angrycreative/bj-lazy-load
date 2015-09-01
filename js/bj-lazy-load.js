@@ -69,6 +69,6 @@ var BJLL = {
 document.addEventListener( 'DOMContentLoaded', BJLL.check, false );
 window.addEventListener( 'scroll', BJLL.check, false );
 window.addEventListener( 'resize', BJLL.check, false );
-document.getElementsByTagName( 'body' ).item( 0 ).addEventListener( 'post-load', BJLL.check, false )
+document.getElementsByTagName( 'body' ).item( 0 ).addEventListener( 'post-load', BJLL.check, false );
 
 
