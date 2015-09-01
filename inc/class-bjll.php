@@ -84,6 +84,8 @@ class BJLL {
 			if ( 'yes' == self::_get_option( 'filter_gravatars' ) ) {
 				add_filter( 'get_avatar', array( __CLASS__, 'filter' ), 200 );
 			}
+
+			add_filter( 'bj_lazy_load_html', array( __CLASS__, 'filter' ) );
 		}
 
 	}
