@@ -51,7 +51,7 @@ class BJLL {
 	 */
 	public function enqueue_scripts() {
 		$mtime = filemtime( dirname( dirname( __FILE__ ) ) . '/js/bj-lazy-load.js' );
-		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.js', dirname( __FILE__ ) ), null, $mtime, true );
+		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.js', __DIR__ ), null, $mtime, true );
 	}
 
 	/**
@@ -120,7 +120,7 @@ class BJLL {
 		if ( ! strlen( $placeholder_url ) ) {
 			$placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
 		}
-		$placeholder_url = 'https://bjornjohansen.no/wp-content/plugins/bj-lazy-load/thumb.php?src=https%3A%2F%2Fbjornjohansen.no%2Fwp-content%2Fuploads%2F2014%2F11%2Fdigiskull-770x552.jpg&w=700';
+		//$placeholder_url = 'https://bjornjohansen.no/wp-content/plugins/bj-lazy-load/thumb.php?src=https%3A%2F%2Fbjornjohansen.no%2Fwp-content%2Fuploads%2F2014%2F11%2Fdigiskull-770x552.jpg&w=700';
 
 		$match_content = self::_get_content_haystack( $content );
 
@@ -133,11 +133,10 @@ class BJLL {
 		foreach ( $matches[0] as $imgHTML ) {
 			
 			// don't to the replacement if the image is a data-uri
-			// @todo Integrate this 
 			if ( ! preg_match( "/src=['\"]data:image/is", $imgHTML ) ) {
 
 				// replace the src and add the data-src attribute
-				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . $placeholder_url . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
+				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . esc_url( $placeholder_url ) . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 				
 				// also replace the srcset (responsive images)
 				$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
