@@ -25,11 +25,22 @@ var BJLL = {
 			BJLL.customEvent( el, 'lazyloaded' );
 		}, false );
 
-		el.setAttribute( 'src', el.getAttribute('data-lazy-src') );
-		if ( el.getAttribute('data-srcset') != null ) {
-			el.setAttribute( 'srcset', el.getAttribute('data-srcset') );
+		var type = el.getAttribute('data-lazy-type');
+
+		if ( 'image' == type ) {
+			el.setAttribute( 'src', el.getAttribute('data-lazy-src') );
+			if ( null != el.getAttribute('data-srcset') ) {
+				el.setAttribute( 'srcset', el.getAttribute('data-srcset') );
+			}
+			el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
+		} else if ( 'iframe' == type ) {
+			var s = el.getAttribute('data-lazy-src'),
+				div = document.createElement('div');
+			
+			div.innerHTML = s;
+			var iframe = div.firstChild;
+			el.parentNode.replaceChild( iframe, el );
 		}
-		el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
 
 	},
 

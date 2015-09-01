@@ -170,7 +170,37 @@ class BJLL {
 	 * @return string The HTML with the iframes replaced
 	 */
 	public static function filter_iframes( $content ) {
+
+		$placeholder_url = self::_get_option( 'placeholder_url' );
+		$placeholder_url = apply_filters( 'bjll/placeholder_url', $placeholder_url, 'image' );
+		if ( ! strlen( $placeholder_url ) ) {
+			$placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
+		}
+
 		$match_content = self::_get_content_haystack( $content );
+
+		$matches = array();
+		preg_match_all( '|<iframe\s+.*?</iframe>|siU', $match_content, $matches );
+		
+		$search = array();
+		$replace = array();
+		
+		foreach ( $matches[0] as $iframeHTML ) {
+
+			// Don't mess with the Gravity Forms ajax iframe
+			if ( strpos( $iframeHTML, 'gform_ajax_frame' ) ) {
+				continue;
+			}
+
+			$replaceHTML = '<img src="' . esc_url( $placeholder_url ) . '"  class="lazy lazy-hidden" data-lazy-type="iframe" data-lazy-src="' . esc_attr( $iframeHTML ) . '" alt="">';
+			
+			$replaceHTML .= '<noscript>' . $iframeHTML . '</noscript>';
+			
+			array_push( $search, $iframeHTML );
+			array_push( $replace, $replaceHTML );
+		}
+		
+		$content = str_replace( $search, $replace, $content );
 
 		return $content;
 
