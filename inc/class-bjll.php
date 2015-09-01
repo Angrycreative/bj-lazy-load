@@ -14,6 +14,18 @@ class BJLL {
 			self::$_options = $options;
 		}
 
+		add_action( 'wp', array( $this, 'init' ), 99 ); // run this as late as possible
+
+	}
+
+	/**
+	 * Initialize the setup
+	 */
+	public function init() {
+
+		self::_bjll_compat();
+		do_action( 'bjll/compat' );
+
 		/**
 		 * Filter to let plugins decide whether the plugin should run for this request or not
 		 *
@@ -24,19 +36,27 @@ class BJLL {
 		$enabled = apply_filters( 'bjll/enabled', true );
 
 		if ( $enabled ) {
-			add_action( 'wp', array( $this, 'init' ), 99 ); // run this as late as possible
-		}
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
+			$this->_setup_filtering();
+		}
 	}
 
-	/**
-	 * Initialize the setup
-	 */
-	public function init() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		$this->_setup_filtering();
+	/**
+	 * Load compat script
+	 */
+	protected function _bjll_compat() {
+
+		$dirname = trailingslashit( __DIR__ ) . 'compat';
+		$d = dir( $dirname );
+		while ( $entry = $d->read() ) {
+			if ( '.' != $entry[0] && '.php' == substr( $entry, -4) ) {
+				include trailingslashit( $dirname ) . $entry;
+			}
+		}
+
 	}
 
 	/**
