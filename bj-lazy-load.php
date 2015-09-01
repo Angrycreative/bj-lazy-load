@@ -27,6 +27,7 @@ License: GPL2
 */
 
 include 'inc/class-bjll-options.php';
+include 'inc/class-bjll-skip-post.php';
 include 'inc/class-bjll.php';
 
 $bjll_options = new BJLL_Options();
