@@ -154,7 +154,6 @@ class BJLL {
 		if ( ! strlen( $placeholder_url ) ) {
 			$placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
 		}
-		//$placeholder_url = 'https://bjornjohansen.no/wp-content/plugins/bj-lazy-load/thumb.php?src=https%3A%2F%2Fbjornjohansen.no%2Fwp-content%2Fuploads%2F2014%2F11%2Fdigiskull-770x552.jpg&w=700';
 
 		$match_content = self::_get_content_haystack( $content );
 
