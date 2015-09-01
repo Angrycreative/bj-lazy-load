@@ -30,6 +30,11 @@ include 'inc/class-bjll-options.php';
 include 'inc/class-bjll-skip-post.php';
 include 'inc/class-bjll.php';
 
-$bjll_options = new BJLL_Options();
-$bjll = new BJLL( $bjll_options );
+function bj_lazy_load() {
+    load_plugin_textdomain( 'bj-lazy-load', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' ); 
 
+    $bjll_options = new BJLL_Options();
+    $bjll = new BJLL( $bjll_options );
+}
+
+add_action( 'plugins_loaded', 'bj_lazy_load' );
