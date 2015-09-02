@@ -56,8 +56,6 @@ No worries. They get the original element in a noscript element. No Lazy Loading
 = I'm using a CDN. Will this plugin interfere? =
 Lazy loading works just fine. The images will still load from your CDN.
 
-As of version 0.6.0, serving responsive and hiDPI images will not work if you're using a CDN. Pull zones will be supported in the near future.
-
 = How can I verify that the plugin is working? =
 Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
 
