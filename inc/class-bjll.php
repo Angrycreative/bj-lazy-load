@@ -68,14 +68,15 @@ class BJLL {
 	 */
 	protected function _bjll_compat() {
 
-		$dirname = trailingslashit( __DIR__ ) . 'compat';
+		$dirname = trailingslashit( dirname( __FILE__ ) ) . 'compat';
 		$d = dir( $dirname );
-		while ( $entry = $d->read() ) {
-			if ( '.' != $entry[0] && '.php' == substr( $entry, -4) ) {
-				include trailingslashit( $dirname ) . $entry;
+		if ( $d ) {
+			while ( $entry = $d->read() ) {
+				if ( '.' != $entry[0] && '.php' == substr( $entry, -4) ) {
+					include trailingslashit( $dirname ) . $entry;
+				}
 			}
 		}
-
 	}
 
 	/**
