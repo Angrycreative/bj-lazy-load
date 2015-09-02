@@ -194,7 +194,7 @@ class BJLL {
 			if ( ! preg_match( "/src=['\"]data:image/is", $imgHTML ) ) {
 
 				// replace the src and add the data-src attribute
-				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . esc_url( $placeholder_url ) . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
+				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . esc_attr( $placeholder_url ) . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 				
 				// also replace the srcset (responsive images)
 				$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
@@ -248,7 +248,7 @@ class BJLL {
 				continue;
 			}
 
-			$replaceHTML = '<img src="' . esc_url( $placeholder_url ) . '"  class="lazy lazy-hidden" data-lazy-type="iframe" data-lazy-src="' . esc_attr( $iframeHTML ) . '" alt="">';
+			$replaceHTML = '<img src="' . esc_attr( $placeholder_url ) . '"  class="lazy lazy-hidden" data-lazy-type="iframe" data-lazy-src="' . esc_attr( $iframeHTML ) . '" alt="">';
 			
 			$replaceHTML .= '<noscript>' . $iframeHTML . '</noscript>';
 			

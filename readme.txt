@@ -5,7 +5,7 @@ Tags: images, iframes, lazy loading, javascript, optimize, performance, bandwidt
 Author URI: http://twitter.com/bjornjohansen
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Lazy loading makes your site load faster and saves bandwidth. Uses no external JS libraries and degrades gracefully for non-js users. Works with both images and iframes (like embedded YouTube videos).
 
@@ -58,6 +58,9 @@ As of version 0.6.0, serving responsive and hiDPI images will not work if you're
 Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
 
 == Changelog ==
+
+= Version 1.0.1 =
+* Fixes issue with missing placeholder
 
 = Version 1.0 =
 * Internal rewrite. Code cleanup.
