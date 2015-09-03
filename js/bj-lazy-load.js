@@ -1,8 +1,18 @@
+"use strict";
+
 var BJLL_options = BJLL_options || {};
 
 var BJLL = {
 
+	_ticking: false,
+
 	check: function () {
+
+		if ( BJLL._ticking ) {
+			return;
+		}
+
+		BJLL._ticking = true;
 
 		if ( 'undefined' == typeof ( BJLL.threshold ) ) {
 			if ( 'undefined' != typeof ( BJLL_options.threshold ) ) {
@@ -14,6 +24,8 @@ var BJLL = {
 
 		var winH = document.documentElement.clientHeight || body.clientHeight;
 
+		var updated = false;
+
 		var els = document.getElementsByClassName('lazy-hidden');
 		[].forEach.call( els, function( el, index, array ) {
 
@@ -21,12 +33,20 @@ var BJLL = {
 
 			if ( winH - elemRect.top + BJLL.threshold > 0 ) {
 				BJLL.show( el );
+				updated = true;
 			}
 
 		} );
+
+		BJLL._ticking = false;
+		if ( updated ) {
+			BJLL.check();
+		}
 	},
 
 	show: function( el ) {
+
+		console.log( el );
 
 		el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
 
