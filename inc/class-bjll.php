@@ -42,6 +42,11 @@ class BJLL {
 	 */
 	public function init() {
 
+		/* We do not touch the feeds */
+		if ( is_feed() ) {
+			return;
+		}
+
 		self::_bjll_compat();
 		do_action( 'bjll/compat' );
 
