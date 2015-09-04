@@ -242,7 +242,7 @@ abstract class scbAdminPage {
 	 *
 	 * @return string
 	 */
-	function submit_button( $value = '', $action = 'submit', $class = 'button' ) {
+	function submit_button( $value = '', $action = 'submit', $class = 'button button-primary' ) {
 
 		$args = is_array( $value ) ? $value : compact( 'value', 'action', 'class' );
 		$args = wp_parse_args( $args, array(
