@@ -27,6 +27,7 @@ Please let me know if you have any issues. Fastest way to get a response is by T
 = Translations =
 * Russian (ru_RU) by Elvisrk
 * Hebrew (he_IL) by Imri Sagive
+* Polish (pl_PL) by Maciej Gryniuk
 * Norwegian Bokmål (nb_NO) by Bjørn Johansen
 
 <a href="https://github.com/bjornjohansen/bj-lazy-load">Development happens at GitHub</a>. Pull requests are very welcome.
@@ -60,6 +61,9 @@ Lazy loading works just fine. The images will still load from your CDN.
 Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
 
 == Changelog ==
+
+= Version x =
+* Added Polish language (by Maciej Gryniuk).
 
 = Version 1.0.4 =
 * We do not touch the feeds
