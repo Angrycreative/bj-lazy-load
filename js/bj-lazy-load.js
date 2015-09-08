@@ -46,8 +46,6 @@ var BJLL = {
 
 	show: function( el ) {
 
-		console.log( el );
-
 		el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
 
 		el.addEventListener( 'load', function() {
