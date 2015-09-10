@@ -242,7 +242,7 @@ class BJLL {
 		$match_content = self::_get_content_haystack( $content );
 
 		$matches = array();
-		preg_match_all( '|<iframe\s+.*?</iframe>|siU', $match_content, $matches );
+		preg_match_all( '|<iframe\s+.*?</iframe>|si', $match_content, $matches );
 		
 		$search = array();
 		$replace = array();
