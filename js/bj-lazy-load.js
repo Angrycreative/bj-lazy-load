@@ -56,8 +56,8 @@ var BJLL = {
 
 		if ( 'image' == type ) {
 			el.setAttribute( 'src', el.getAttribute('data-lazy-src') );
-			if ( null != el.getAttribute('data-srcset') ) {
-				el.setAttribute( 'srcset', el.getAttribute('data-srcset') );
+			if ( null != el.getAttribute('data-lazy-srcset') ) {
+				el.setAttribute( 'srcset', el.getAttribute('data-lazy-srcset') );
 			}
 		} else if ( 'iframe' == type ) {
 			var s = el.getAttribute('data-lazy-src'),
