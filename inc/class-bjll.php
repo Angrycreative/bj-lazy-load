@@ -198,9 +198,20 @@ class BJLL {
 			
 			// don't to the replacement if the image is a data-uri
 			if ( ! preg_match( "/src=['\"]data:image/is", $imgHTML ) ) {
+				
+				$placeholder_url_used = $placeholder_url;
+				// use low res preview image as placeholder if applicable
+				if ( 'yes' == self::_get_option('preview') ) {
+					if( preg_match( '/class=["\'].*?wp-image-([0-9]*)/is', $imgHTML, $id_matches ) ) {
+						$img_id = intval($id_matches[1]);
+						$tiny_img_data  = wp_get_attachment_image_src( $img_id, 'tiny-lazy' );
+						$tiny_url = $tiny_img_data[0];
+						$placeholder_url_used = $tiny_url;
+					}
+				}
 
 				// replace the src and add the data-src attribute
-				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . esc_attr( $placeholder_url ) . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
+				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . esc_attr( $placeholder_url_used ) . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 				
 				// also replace the srcset (responsive images)
 				$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
@@ -310,7 +321,9 @@ class BJLL {
 		*/
 		$skip_classes_quoted = array_map( 'preg_quote', $skip_classes );
 		$skip_classes_ORed = implode( '|', $skip_classes_quoted );
-		$regex = '/<(\w+)\s[^>]*(?:class|id)\s*=\s*([\'"]).*?[^\-]\b(?:' . $skip_classes_ORed . ')\b[^\-].*?\2[^>]*>.*<\/\\1>/isU';
+
+		$regex = '/<\s*\w*\s*class\s*=\s*[\'"]?(|.*\s)?' . $skip_classes_ORed . '(|\s.*)?[\'"]?.*?>/isU';
+
 		return preg_replace( $regex, '', $content );
 	}
 

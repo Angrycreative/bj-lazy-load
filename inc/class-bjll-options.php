@@ -22,6 +22,7 @@ class BJLL_Options {
 			'placeholder_url'         => '',
 			'skip_classes'            => '',
 			'threshold'               => '200',
+			'preview'                 => 'no',
 		) );
 
 		if ( is_admin() ) {

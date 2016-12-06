@@ -45,10 +45,9 @@ var BJLL = {
 	},
 
 	show: function( el ) {
-
 		el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g , '' );
-
 		el.addEventListener( 'load', function() {
+			el.className += " lazy-loaded";
 			BJLL.customEvent( el, 'lazyloaded' );
 		}, false );
 

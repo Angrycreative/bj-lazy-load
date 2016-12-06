@@ -1,11 +1,11 @@
 === BJ Lazy Load ===
-Contributors: bjornjohansen
+Contributors: bjornjohansen, arontornberg
 Donate link: http://www.kiva.org/
 Tags: images, iframes, lazy loading, javascript, optimize, performance, bandwidth
 Author URI: http://twitter.com/bjornjohansen
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 
 Lazy loading for images and iframes makes your site load faster and saves bandwidth. Uses no external JS libraries and degrades gracefully for non-js users.
 
@@ -61,6 +61,15 @@ Lazy loading works just fine. The images will still load from your CDN.
 Check your HTML source or see the magic at work in Web Inspector, FireBug or similar.
 
 == Changelog ==
+
+= Version 1.0.7 =
+* Update sponsored by Bonnier Tidskrifter
+* Fixed issue with srcset not lazy loading (by krispy1298)
+* Compatibility with BadgeOS plugin (by rohitmanglik)
+* WP's theme style for submit button. (by odie2)
+* Images will now get the lazy-loaded class onload
+* Added optional rudimentary LQIP solution
+* Added working regex for selecting elements to skip
 
 = Version 1.0.6 =
 * Fixed bug when multiple iframes was on the same line of HTML code
