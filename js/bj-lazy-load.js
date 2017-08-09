@@ -54,13 +54,13 @@ var BJLL = {
 		var type = el.getAttribute('data-lazy-type');
 
 		if ( 'image' == type ) {
-			el.setAttribute( 'src', el.getAttribute('data-lazy-src') );
 			if ( null != el.getAttribute('data-lazy-srcset') ) {
 				el.setAttribute( 'srcset', el.getAttribute('data-lazy-srcset') );
 			}
 			if ( null != el.getAttribute('data-lazy-sizes') ) {
 				el.setAttribute( 'sizes', el.getAttribute('data-lazy-sizes') );
 			}
+			el.setAttribute( 'src', el.getAttribute('data-lazy-src') );
 		} else if ( 'iframe' == type ) {
 			var s = el.getAttribute('data-lazy-src'),
 				div = document.createElement('div');
