@@ -71,6 +71,7 @@ if ( ! class_exists( 'BJLL_AdminPage' ) ) {
 					'type' => 'radio',
 					'name' => 'preview',
 					'value' => array( 'yes' => __( 'Yes', 'bj-lazy-load' ), 'no' => __( 'No', 'bj-lazy-load' ) ),
+					'desc' => sprintf( '<p class="description">%s</p>', __( 'Shows a low resolution preview image before the real image loads. Images uploaded before this setting is activated need that have their image sizes regenerated for the feature to work. This can be done using a plugin such as <a href="https://sv.wordpress.org/plugins/regenerate-thumbnails/">Regenerate Thumbnails</a>.', 'bj-lazy-load' ) ),
 				)
 			);
 			echo $this->form_table( $optionfields );
