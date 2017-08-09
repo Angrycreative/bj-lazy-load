@@ -183,7 +183,7 @@ class BJLL {
 		$placeholder_url = self::_get_option( 'placeholder_url' );
 		$placeholder_url = apply_filters( 'bjll/placeholder_url', $placeholder_url, 'image' );
 		if ( ! strlen( $placeholder_url ) ) {
-			$placeholder_url = 'data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=';
+			$placeholder_url = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 		}
 
 		$match_content = self::_get_content_haystack( $content );
@@ -196,7 +196,7 @@ class BJLL {
 
 		foreach ( $matches[0] as $imgHTML ) {
 			
-			// don't to the replacement if the image is a data-uri
+			// don't do the replacement if the image is a data-uri
 			if ( ! preg_match( "/src=['\"]data:image/is", $imgHTML ) ) {
 				
 				$placeholder_url_used = $placeholder_url;
