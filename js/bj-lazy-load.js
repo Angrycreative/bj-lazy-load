@@ -58,6 +58,9 @@ var BJLL = {
 			if ( null != el.getAttribute('data-lazy-srcset') ) {
 				el.setAttribute( 'srcset', el.getAttribute('data-lazy-srcset') );
 			}
+			if ( null != el.getAttribute('data-lazy-sizes') ) {
+				el.setAttribute( 'sizes', el.getAttribute('data-lazy-sizes') );
+			}
 		} else if ( 'iframe' == type ) {
 			var s = el.getAttribute('data-lazy-src'),
 				div = document.createElement('div');

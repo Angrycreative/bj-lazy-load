@@ -215,6 +215,8 @@ class BJLL {
 				
 				// also replace the srcset (responsive images)
 				$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
+				// replace sizes to avoid w3c errors for missing srcset
+				$replaceHTML = str_replace( 'sizes', 'data-lazy-sizes', $replaceHTML );
 				
 				// add the lazy class to the img element
 				if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
