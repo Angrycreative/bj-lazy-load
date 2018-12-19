@@ -316,7 +316,10 @@ class BJLL {
 	public static function remove_skip_classes_elements( $content ) {
 
 		$skip_classes = self::_get_skip_classes( 'html' );
-
+		if ( count( $skip_classes ) <= 0 ) {
+			return $content;
+		}
+		
 		/*
 		http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454
 		We can’t do this, but we still do it.
@@ -353,10 +356,6 @@ class BJLL {
 		
 		if ( strlen( trim( $skip_classes_str ) ) ) {
 			$skip_classes = array_map( 'trim', explode( ',', $skip_classes_str ) );
-		}
-
-		if ( ! in_array( 'lazy', $skip_classes ) ) {
-			$skip_classes[] = 'lazy';
 		}
 
 		/**
