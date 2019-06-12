@@ -3,9 +3,9 @@ Contributors: bjornjohansen, arontornberg, angrycreative
 Donate link: http://www.kiva.org/
 Tags: images, iframes, lazy loading, javascript, optimize, performance, bandwidth
 Author URI: http://twitter.com/bjornjohansen
-Requires at least: 3.5
-Tested up to: 4.9
-Stable tag: 1.0.9
+Requires at least: %{{wordpress.wordpress_versions.minimum_supported}}
+Tested up to: %{{wordpress.wordpress_versions.latest_tested}}
+Stable tag: %{{version}}
 
 Lazy loading for images and iframes makes your site load faster and saves bandwidth. Uses no external JS libraries and degrades gracefully for non-js users.
 
