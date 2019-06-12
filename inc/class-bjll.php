@@ -102,9 +102,16 @@ class BJLL {
 		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.min.js', dirname( __FILE__ ) ), null, $jsver, true );
 
 		$bjll_options = array();
-		$threshold = intval( self::_get_option('threshold') );
-		if ( 200 != $threshold ) {
-			$bjll_options['threshold'] = $threshold;
+		$bjll_option_defaults = array(
+			'threshold'     => 200,
+			'debounce'      => 50,
+			'recheck_delay' => 250,
+		);
+		foreach ( $bjll_option_defaults as $option => $default ) {
+			$val = intval( self::_get_option( $option ) );
+			if ( $val !== $default ) {
+				$bjll_options[ $option ] = $val;
+			}
 		}
 		if ( count( $bjll_options ) ) {
 			wp_localize_script( 'BJLL', 'BJLL_options', $bjll_options );
