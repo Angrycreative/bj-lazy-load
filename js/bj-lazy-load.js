@@ -30,6 +30,8 @@ var BJLL = {
 		[].forEach.call( els, function( el, index, array ) {
 
 			var elemRect = el.getBoundingClientRect();
+			// do not lazy-load images that are hidden with display:none or have a width/height of 0
+			if ( !elemRect.width || !elemRect.height ) return;
 
 			if ( winH - elemRect.top + BJLL.threshold > 0 ) {
 				BJLL.show( el );
