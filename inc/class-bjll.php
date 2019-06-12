@@ -321,11 +321,15 @@ class BJLL {
 		http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454
 		We can’t do this, but we still do it.
 		*/
-		$skip_classes_quoted = array_map( 'preg_quote', $skip_classes );
+		$skip_classes_quoted = array_map(
+			function( $el ) {
+				return preg_quote( $el, '/' );
+			},
+			$skip_classes
+		);
 		$skip_classes_ORed = implode( '|', $skip_classes_quoted );
 
-		$regex = '/<\s*\w*\s*class\s*=\s*[\'"](|.*\s)' . $skip_classes_ORed . '(|\s.*)[\'"].*>/isU';
-
+		$regex = '/<[^>]+\sclass\s*=\s*([\'"])(?:|[^\'"]*\s)' . $skip_classes_ORed . '(?:|\s[^\'"]*)\1[^>]*>/is';
 		return preg_replace( $regex, '', $content );
 	}
 
