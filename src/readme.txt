@@ -62,6 +62,12 @@ Check your HTML source or see the magic at work in Web Inspector, FireBug or sim
 
 == Changelog ==
 
+= Version 1.0.10 =
+* Prevent images that are hidden with display:none or have a width/height of 0 from being loaded immediately upon page load
+* Fixed regular expression for detecting skip classes (old version did not find elements if class wasn't the first attribute)
+* Added recurring check for newly visible content (frequency configurable via new "Recheck delay" option)
+* Added debouncing period for lazy loading checks to reduce browser CPU load (configurable via new "Check debounce period" option)
+
 = Version 1.0.9 =
 * Do not generate tiny image size if unless low-res preview image is used
 * Default placeholder image transparency fix

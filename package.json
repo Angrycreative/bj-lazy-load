@@ -1,6 +1,6 @@
 {
   "name": "bj-lazy-load",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Lazy image loading makes your site load faster and saves bandwidth.",
   "scripts": {
     "lint": "npm run lint:php && npm run lint:js",
