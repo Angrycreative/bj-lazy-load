@@ -10,7 +10,7 @@ var BJLL = ( function() {
 
 		init: function() {
 			BJLL.threshold = BJLL.getOptionIntValue( 'threshold', 200 );
-			BJLL.recheck_delay = BJLL.getOptionIntValue( 'recheck_delay', 500 );
+			BJLL.recheck_delay = BJLL.getOptionIntValue( 'recheck_delay', 250 );
 			BJLL.debounce = BJLL.getOptionIntValue( 'debounce', 50 );
 			BJLL.checkRecurring();
 			return BJLL;
