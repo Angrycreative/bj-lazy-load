@@ -1,5 +1,6 @@
-"use strict";
+'use strict';
 
+// eslint-disable-next-line camelcase
 var BJLL_options = BJLL_options || {};
 
 var BJLL = ( function() {
@@ -10,17 +11,18 @@ var BJLL = ( function() {
 
 		init: function() {
 			BJLL.threshold = BJLL.getOptionIntValue( 'threshold', 200 );
-			BJLL.recheck_delay = BJLL.getOptionIntValue( 'recheck_delay', 250 );
+			BJLL.recheckDelay = BJLL.getOptionIntValue( 'recheck_delay', 250 );
 			BJLL.debounce = BJLL.getOptionIntValue( 'debounce', 50 );
 			BJLL.checkRecurring();
 			return BJLL;
 		},
 
 		check: function( fromDebounceTimeout ) {
-			if ( fromDebounceTimeout === true ) {
+			var tstamp, winH, updated, els;
+			if ( true === fromDebounceTimeout ) {
 				BJLL._checkDebounceTimeoutRunning = false;
 			}
-			var tstamp = performance.now();
+			tstamp = performance.now();
 			if ( tstamp < BJLL._lastCheckTs + BJLL.debounce ) {
 				if ( ! BJLL._checkDebounceTimeoutRunning ) {
 					BJLL._checkDebounceTimeoutRunning = true;
@@ -32,23 +34,22 @@ var BJLL = ( function() {
 			}
 			BJLL._lastCheckTs = tstamp;
 
-			var winH = document.documentElement.clientHeight || body.clientHeight;
+			winH = document.documentElement.clientHeight || body.clientHeight;
+			updated = false;
+			els = document.getElementsByClassName( 'lazy-hidden' );
 
-			var updated = false;
-
-			var els = document.getElementsByClassName( 'lazy-hidden' );
 			[].forEach.call( els, function( el, index, array ) {
-
 				var elemRect = el.getBoundingClientRect();
 
 				// do not lazy-load images that are hidden with display:none or have a width/height of 0
-				if ( !elemRect.width || !elemRect.height ) return;
+				if ( ! elemRect.width || ! elemRect.height ) {
+					return;
+				}
 
-				if ( winH - elemRect.top + BJLL.threshold > 0 ) {
+				if ( 0 < winH - elemRect.top + BJLL.threshold ) {
 					BJLL.show( el );
 					updated = true;
 				}
-
 			});
 
 			if ( updated ) {
@@ -58,17 +59,18 @@ var BJLL = ( function() {
 
 		checkRecurring: function() {
 			BJLL.check();
-			setTimeout( BJLL.checkRecurring, BJLL.recheck_delay );
+			setTimeout( BJLL.checkRecurring, BJLL.recheckDelay );
 		},
 
 		show: function( el ) {
+			var type, s, div, iframe;
 			el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g, '' );
 			el.addEventListener( 'load', function() {
-				el.className += " lazy-loaded";
+				el.className += ' lazy-loaded';
 				BJLL.customEvent( el, 'lazyloaded' );
 			}, false );
 
-			var type = el.getAttribute( 'data-lazy-type' );
+			type = el.getAttribute( 'data-lazy-type' );
 
 			if ( 'image' == type ) {
 				if ( null != el.getAttribute( 'data-lazy-srcset' ) ) {
@@ -79,13 +81,12 @@ var BJLL = ( function() {
 				}
 				el.setAttribute( 'src', el.getAttribute( 'data-lazy-src' ) );
 			} else if ( 'iframe' == type ) {
-				var s = el.getAttribute( 'data-lazy-src' ),
-					div = document.createElement( 'div' );
+				s = el.getAttribute( 'data-lazy-src' );
+				div = document.createElement( 'div' );
 
 				div.innerHTML = s;
-				var iframe = div.firstChild;
+				iframe = div.firstChild;
 				el.parentNode.replaceChild( iframe, el );
-
 			}
 		},
 
@@ -93,7 +94,7 @@ var BJLL = ( function() {
 			var event;
 
 			if ( document.createEvent ) {
-				event = document.createEvent( "HTMLEvents" );
+				event = document.createEvent( 'HTMLEvents' );
 				event.initEvent( eventName, true, true );
 			} else {
 				event = document.createEventObject();
@@ -105,13 +106,15 @@ var BJLL = ( function() {
 			if ( document.createEvent ) {
 				el.dispatchEvent( event );
 			} else {
-				el.fireEvent( "on" + event.eventType, event );
+				el.fireEvent( 'on' + event.eventType, event );
 			}
 		},
 
 		getOptionIntValue: function( name, defaultValue ) {
+			// eslint-disable-next-line camelcase
 			if ( 'undefined' !== typeof ( BJLL_options[name]) ) {
-				return parseInt( BJLL_options[name] );
+				// eslint-disable-next-line camelcase
+				return parseInt( BJLL_options[name]);
 			}
 			return defaultValue;
 		}
@@ -123,5 +126,3 @@ window.addEventListener( 'load', BJLL.check, false );
 window.addEventListener( 'scroll', BJLL.check, false );
 window.addEventListener( 'resize', BJLL.check, false );
 document.getElementsByTagName( 'body' ).item( 0 ).addEventListener( 'post-load', BJLL.check, false );
-
-
