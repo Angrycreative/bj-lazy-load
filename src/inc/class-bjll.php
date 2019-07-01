@@ -102,9 +102,16 @@ class BJLL {
 		wp_enqueue_script( 'BJLL', plugins_url( 'js/bj-lazy-load.min.js', dirname( __FILE__ ) ), null, $jsver, true );
 
 		$bjll_options = array();
-		$threshold = intval( self::_get_option('threshold') );
-		if ( 200 != $threshold ) {
-			$bjll_options['threshold'] = $threshold;
+		$bjll_option_defaults = array(
+			'threshold'     => 200,
+			'debounce'      => 50,
+			'recheck_delay' => 250,
+		);
+		foreach ( $bjll_option_defaults as $option => $default ) {
+			$val = intval( self::_get_option( $option ) );
+			if ( $val !== $default ) {
+				$bjll_options[ $option ] = $val;
+			}
 		}
 		if ( count( $bjll_options ) ) {
 			wp_localize_script( 'BJLL', 'BJLL_options', $bjll_options );
@@ -321,11 +328,15 @@ class BJLL {
 		http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454
 		We can’t do this, but we still do it.
 		*/
-		$skip_classes_quoted = array_map( 'preg_quote', $skip_classes );
+		$skip_classes_quoted = array_map(
+			function( $el ) {
+				return preg_quote( $el, '/' );
+			},
+			$skip_classes
+		);
 		$skip_classes_ORed = implode( '|', $skip_classes_quoted );
 
-		$regex = '/<\s*\w*\s*class\s*=\s*[\'"](|.*\s)' . $skip_classes_ORed . '(|\s.*)[\'"].*>/isU';
-
+		$regex = '/<[^>]+\sclass\s*=\s*([\'"])(?:|[^\'"]*\s)' . $skip_classes_ORed . '(?:|\s[^\'"]*)\1[^>]*>/is';
 		return preg_replace( $regex, '', $content );
 	}
 

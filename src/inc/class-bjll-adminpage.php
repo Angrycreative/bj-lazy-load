@@ -67,6 +67,18 @@ if ( ! class_exists( 'BJLL_AdminPage' ) ) {
 					'desc' => sprintf( '<p class="description">%s</p>', __( 'How close to the viewport the element should be when we load it. In pixels. Example: 200', 'bj-lazy-load' ) ),
 				),
 				array(
+					'title' => __( 'Check debounce period', 'bj-lazy-load' ),
+					'type' => 'text',
+					'name' => 'debounce',
+					'desc' => sprintf( '<p class="description">%s</p>', __( 'Minimum delay (in milliseconds) between checks for newly visible elements. Set to a higher value to reduce CPU load when scrolling.', 'bj-lazy-load' ) ),
+				),
+				array(
+					'title' => __( 'Recheck delay', 'bj-lazy-load' ),
+					'type' => 'text',
+					'name' => 'recheck_delay',
+					'desc' => sprintf( '<p class="description">%s</p>', __( 'Delay (in milliseconds) between checks for newly visible elements when no scrolling occurs.', 'bj-lazy-load' ) ),
+				),
+				array(
 					'title' => __( 'Use low-res preview image', 'bj-lazy-load' ),
 					'type' => 'radio',
 					'name' => 'preview',

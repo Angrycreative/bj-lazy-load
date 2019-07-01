@@ -1,0 +1,53 @@
+{
+  "name": "bj-lazy-load",
+  "version": "1.0.10",
+  "description": "Lazy image loading makes your site load faster and saves bandwidth.",
+  "scripts": {
+    "lint": "npm run lint:php && npm run lint:js",
+    "lint:php": "phpcbf ./src",
+    "lint:js": "./node_modules/.bin/eslint --fix src/js/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Angrycreative/bj-lazy-load.git"
+  },
+  "keywords": [
+    "images",
+    "iframes",
+    "lazy",
+    "loading",
+    "javascript",
+    "optimize",
+    "performance",
+    "bandwidth"
+  ],
+  "author": "bjornjohansen, arontornberg, angrycreative",
+  "wordpress": {
+    "title": "BJ Lazy Load",
+    "translation": {
+      "domain": "bj-lazy-load"
+    },
+    "plugin_uri": "https://wordpress.org/plugins/bj-lazy-load/",
+    "wordpress_versions": {
+      "minimum_supported": "3.5",
+      "latest_tested": "5.2.1"
+    }
+  },
+  "license": "GPL-2.0-only",
+  "bugs": {
+    "url": "https://wordpress.org/support/plugin/bj-lazy-load/"
+  },
+  "homepage": "https://github.com/Angrycreative/bj-lazy-load#readme",
+  "devDependencies": {
+    "del": "^4.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-wordpress": "^2.0.0",
+    "flat": "^4.1.0",
+    "gulp": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-wp-pot": "^2.3.5",
+    "gulp-zip": "^5.0.0"
+  }
+}

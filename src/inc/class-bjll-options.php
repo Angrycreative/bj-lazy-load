@@ -22,6 +22,8 @@ class BJLL_Options {
 			'placeholder_url'         => '',
 			'skip_classes'            => '',
 			'threshold'               => '200',
+			'debounce'                => '50',
+			'recheck_delay'           => '250',
 			'preview'                 => 'no',
 		) );
 
