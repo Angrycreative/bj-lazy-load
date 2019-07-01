@@ -221,9 +221,9 @@ class BJLL {
 				$replaceHTML = preg_replace( '/<img(.*?)src=/is', '<img$1src="' . esc_attr( $placeholder_url_used ) . '" data-lazy-type="image" data-lazy-src=', $imgHTML );
 				
 				// also replace the srcset (responsive images)
-				$replaceHTML = str_replace( 'srcset', 'data-lazy-srcset', $replaceHTML );
+				$replaceHTML = preg_replace( '/srcset=("|\')/', 'data-lazy-srcset=\1', $replaceHTML );
 				// replace sizes to avoid w3c errors for missing srcset
-				$replaceHTML = str_replace( 'sizes', 'data-lazy-sizes', $replaceHTML );
+				$replaceHTML = preg_replace( '/sizes=("|\')/', 'data-lazy-sizes=\1', $replaceHTML );
 				
 				// add the lazy class to the img element
 				if ( preg_match( '/class=["\']/i', $replaceHTML ) ) {
