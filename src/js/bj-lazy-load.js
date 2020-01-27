@@ -66,9 +66,13 @@ var BJLL = ( function() {
 			var type, s, div, iframe;
 			el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g, '' );
 			type = el.getAttribute( 'data-lazy-type' );
-
+			
 			if(type=='background'){
-				el.setAttribute( 'style', 'background-image: url('+el.getAttribute('data-lazy-src')+');' + el.getAttribute('data-lazy-style') );
+				var style = 'url(' + el.getAttribute('data-lazy-src') + ')';
+				if(null != el.getAttribute('data-lazy-style')){
+					style += el.getAttribute('data-lazy-style');
+				}
+				el.setAttribute( 'style', style);
 				el.className += " lazy-loaded";
 				BJLL.customEvent( el, 'lazyloaded' );
 			}else{
@@ -76,7 +80,7 @@ var BJLL = ( function() {
 					el.className += ' lazy-loaded';
 					BJLL.customEvent( el, 'lazyloaded' );
 				}, false );
-				
+
 				if ( 'image' == type ) {
 					if ( null != el.getAttribute( 'data-lazy-srcset' ) ) {
 						el.setAttribute( 'srcset', el.getAttribute( 'data-lazy-srcset' ) );
