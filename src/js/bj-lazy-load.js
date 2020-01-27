@@ -66,9 +66,9 @@ var BJLL = ( function() {
 			var type, s, div, iframe;
 			el.className = el.className.replace( /(?:^|\s)lazy-hidden(?!\S)/g, '' );
 			type = el.getAttribute( 'data-lazy-type' );
-			
+
 			if(type=='background'){
-				var style = 'url(' + el.getAttribute('data-lazy-src') + ')';
+				var style = 'background-image: url(' + el.getAttribute('data-lazy-src') + ');';
 				if(null != el.getAttribute('data-lazy-style')){
 					style += el.getAttribute('data-lazy-style');
 				}
