@@ -42,7 +42,7 @@
     "del": "^4.1.1",
     "eslint": "^5.16.0",
     "eslint-config-wordpress": "^2.0.0",
-    "flat": "^4.1.0",
+    "flat": "^5.0.1",
     "gulp": "^4.0.2",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
